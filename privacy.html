@@ -2,39 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b0026">
 <title>Giga-Ball - Privacy Policy</title>
 <meta name="description" content="Giga-Ball's privacy policy. No ads, no analytics, no data collected by the developer.">
 <link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="stylesheet" href="shared.css">
 <style>
-  :root {
-    --purple-deep: #1b0026;
-    --purple: #290040;
-    --green: #d2ff00;
-    --white-soft: rgba(255, 255, 255, 0.85);
-    --white-faint: rgba(255, 255, 255, 0.55);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: radial-gradient(120% 90% at 50% 0%, var(--purple) 0%, var(--purple-deep) 70%);
-    color: var(--white-soft);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    min-height: 100vh;
-  }
-  main { max-width: 680px; margin: 0 auto; padding: 48px 24px 40px; line-height: 1.6; }
+  /* The policy is a reading page, so it borrows the site's background and type and
+     then undoes the things the landing page needs and a document does not: centred
+     headings, and the wide column. */
+  main { max-width: 680px; padding-top: 44px; padding-bottom: 40px; }
   .logo { max-width: 220px; display: block; margin: 0 auto 10px;
-          filter: drop-shadow(0 4px 14px rgba(210, 255, 0, 0.3)); }
+          filter: drop-shadow(0 0 20px rgba(210, 255, 0, 0.34)); }
   h1 { color: #fff; font-size: 1.5rem; text-align: center; margin: 18px 0 6px; }
-  .updated { text-align: center; color: var(--white-faint); font-size: 0.9rem; margin-bottom: 34px; }
-  h2 { color: var(--green); font-size: 1.05rem; margin: 30px 0 8px; }
+  .updated { text-align: center; color: var(--text-dim); font-size: 0.9rem; margin-bottom: 34px; }
+  h2 { color: var(--green); font-size: 1.05rem; margin: 30px 0 8px;
+       text-align: left; text-shadow: none; }
   p, li { font-size: 0.98rem; }
+  main p { margin-bottom: 13px; }   /* the shared reset zeroes these, and a policy needs paragraphs */
+  li { margin-bottom: 4px; }
   ul { padding-left: 22px; margin-top: 6px; }
   a { color: var(--green); }
   .back { display: inline-block; margin-top: 40px; font-size: 0.95rem; }
-  footer { margin-top: 36px; font-size: 0.85rem; color: var(--white-faint); text-align: center; }
+  footer { margin-top: 36px; }
 </style>
 </head>
 <body>
+<div class="glowfield" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
 <main>
   <a href="index.html"><img class="logo" src="assets/logo.png" alt="Giga-Ball"></a>
   <h1>Privacy Policy</h1>
@@ -126,5 +123,6 @@
     <p>© 2026 James Harding. All rights reserved.</p>
   </footer>
 </main>
+<script src="shared.js"></script>
 </body>
 </html>

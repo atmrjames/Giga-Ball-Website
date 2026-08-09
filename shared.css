@@ -1,0 +1,141 @@
+/* Giga-Ball, on the web.
+   One stylesheet for both pages so the sneak peek cannot drift from the landing page.
+   Mobile first: everything below is written for a phone, and the few things that change
+   on a wider screen are at the bottom. */
+
+:root {
+  --purple-deep: #1b0026;
+  --purple: #2d0044;
+  --purple-lift: #3d0a5c;
+  --green: #d2ff00;
+  --text: rgba(255, 255, 255, 0.86);
+  --text-dim: rgba(255, 255, 255, 0.58);
+  --edge: rgba(255, 255, 255, 0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--purple-deep);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Two slow lights behind everything, so the page is never quite still. */
+.glowfield { position: fixed; inset: 0; z-index: -1; overflow: hidden;
+  background:
+    radial-gradient(80% 55% at 50% -10%, var(--purple-lift) 0%, transparent 60%),
+    radial-gradient(100% 70% at 50% 110%, #240034 0%, transparent 70%),
+    var(--purple-deep); }
+.glowfield::before, .glowfield::after {
+  content: ""; position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.18; }
+.glowfield::before { width: 46vmax; height: 46vmax; left: -12vmax; top: -10vmax;
+  background: var(--green); animation: drift 26s ease-in-out infinite alternate; }
+.glowfield::after { width: 40vmax; height: 40vmax; right: -14vmax; bottom: -12vmax;
+  background: #b400ff; animation: drift 32s ease-in-out infinite alternate-reverse; }
+@keyframes drift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to   { transform: translate3d(6vmax,4vmax,0) scale(1.14); } }
+
+main { max-width: 1040px; margin: 0 auto; padding: 0 18px; }
+
+/* A thin bar that fills as the page is read - the smallest possible "you are here". */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: var(--green); box-shadow: 0 0 12px rgba(210,255,0,0.7);
+  z-index: 50; transition: width 0.1s linear; }
+
+/* ---------- Type ---------- */
+
+/* The landing page's name is the wordmark image, so its h1 is for readers and search
+   engines only. Pages whose h1 is meant to be seen simply do not carry the class. */
+.sr-only { position: absolute; left: -9999px; }
+h2 { font-size: clamp(1.45rem, 6vw, 2.1rem); color: #fff; text-align: center;
+  letter-spacing: -0.02em; text-shadow: 0 0 24px rgba(210,255,0,0.25); }
+.sub { text-align: center; color: var(--text-dim); margin: 10px auto 0; max-width: 52ch; }
+
+section { padding: clamp(44px, 11vw, 88px) 0; }
+
+/* ---------- Buttons and pills ---------- */
+
+.store { display: inline-block; margin-top: 26px; line-height: 0; border-radius: 10px;
+  transition: transform 0.18s ease, filter 0.18s ease; }
+.store img { height: 52px; width: auto; }
+.store:hover, .store:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  filter: drop-shadow(0 6px 22px rgba(210,255,0,0.45)); }
+
+.ghost {
+  display: inline-block; margin-top: 22px; padding: 13px 26px;
+  border: 1px solid rgba(210,255,0,0.5); border-radius: 999px;
+  color: var(--green); text-decoration: none; font-weight: 700; font-size: 0.98rem;
+  background: rgba(210,255,0,0.06);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+.ghost:hover, .ghost:focus-visible {
+  background: rgba(210,255,0,0.14); transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(210,255,0,0.22); }
+
+.solid {
+  display: inline-block; padding: 14px 30px; border-radius: 999px;
+  background: var(--green); color: #24003a; font-weight: 800; text-decoration: none;
+  box-shadow: 0 6px 24px rgba(210,255,0,0.32);
+  transition: transform 0.16s ease, box-shadow 0.16s ease; }
+.solid:hover, .solid:focus-visible {
+  transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 34px rgba(210,255,0,0.46); }
+
+.badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.pill {
+  border: 1px solid var(--edge); border-radius: 999px; padding: 7px 14px;
+  font-size: 0.8rem; font-weight: 600; color: var(--text-dim);
+  background: rgba(255,255,255,0.035); cursor: default;
+  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease, background 0.18s ease; }
+.pill strong { color: var(--green); font-weight: 700; }
+.pill:hover {
+  transform: translateY(-3px); border-color: rgba(210,255,0,0.55);
+  background: rgba(210,255,0,0.08); color: #fff; }
+
+/* ---------- Cards ---------- */
+
+.grid { display: grid; gap: 14px; margin-top: 34px; grid-template-columns: 1fr; }
+.card {
+  border: 1px solid var(--edge); border-radius: 16px; padding: 20px;
+  background: rgba(255,255,255,0.035);
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease; }
+.card:hover {
+  border-color: rgba(210,255,0,0.45); background: rgba(210,255,0,0.05);
+  transform: translateY(-3px); }
+.card h3 {
+  font-size: 1.02rem; color: var(--green); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 9px; }
+.card h3 svg { width: 19px; height: 19px; flex: none; }
+.card p { font-size: 0.95rem; color: var(--text-dim); }
+
+/* ---------- Reveal on scroll ---------- */
+
+.reveal { opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .glowfield::before, .glowfield::after { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Footer ---------- */
+
+footer { border-top: 1px solid var(--edge); margin-top: 36px; padding: 30px 0 40px;
+  text-align: center; font-size: 0.86rem; color: var(--text-dim); }
+footer a { color: var(--green); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 700px) {
+  main { padding: 0 24px; }
+  .grid { grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 16px; }
+  .store img { height: 56px; }
+}
