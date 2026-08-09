@@ -43,10 +43,23 @@ body {
 
 main { max-width: 1040px; margin: 0 auto; padding: 0 18px; }
 
-/* A thin bar that fills as the page is read - the smallest possible "you are here". */
-.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
-  background: var(--green); box-shadow: 0 0 12px rgba(210,255,0,0.7);
-  z-index: 50; transition: width 0.1s linear; }
+/* ---------- The app icon and wordmark ---------- */
+
+/* The float and the lean are on two different elements on purpose: a keyframe animation
+   owns `transform` outright, so the wrapper does the breathing and the icon itself does
+   the leaning towards the cursor. One element could not do both. */
+.icon-float { display: inline-block; animation: breathe 6s ease-in-out infinite; }
+@keyframes breathe { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
+
+.icon { display: block; width: clamp(96px, 26vw, 148px); height: auto; border-radius: 24%;
+  filter: drop-shadow(0 18px 44px rgba(0,0,0,0.55));
+  --lean-x: 0deg; --lean-y: 0deg;
+  transform: perspective(600px) rotateX(var(--lean-x)) rotateY(var(--lean-y));
+  transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
+.icon.tracking { transition: transform 0.08s linear; }
+
+.wordmark { display: block; width: min(420px, 84%); margin: 24px auto 0;
+  filter: drop-shadow(0 0 26px rgba(210,255,0,0.42)); }
 
 /* ---------- Type ---------- */
 
@@ -122,6 +135,7 @@ section { padding: clamp(44px, 11vw, 88px) 0; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .glowfield::before, .glowfield::after { animation: none; }
+  .icon-float { animation: none; }
   html { scroll-behavior: auto; }
 }
 

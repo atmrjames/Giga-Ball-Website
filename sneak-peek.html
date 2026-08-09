@@ -4,209 +4,215 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Giga-Ball 1.3 - a sneak peek</title>
-<meta name="description" content="What is coming in Giga-Ball 1.3: Endless Mayhem, a Daily Challenge, new brick types and power-ups. Arriving with iOS 27.">
+<meta name="description" content="What is coming in Giga-Ball 1.3: Endless Mayhem, a Daily Challenge, new brick shapes and behaviours, twenty-two new power-ups, and a public TestFlight.">
 <meta name="theme-color" content="#1b0026">
-<meta property="og:title" content="Giga-Ball 1.3 - a sneak peek">
-<meta property="og:description" content="Endless Mayhem, a Daily Challenge, new bricks and new power-ups. Coming with iOS 27.">
+<meta property="og:title" content="Giga-Ball 1.3">
+<meta property="og:description" content="Endless Mayhem, a Daily Challenge, new bricks and twenty-two new power-ups.">
 <meta property="og:image" content="https://giga-ball.app/assets/icon.png">
 <meta property="og:url" content="https://giga-ball.app/sneak-peek.html">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .top { text-align: center; padding: clamp(38px, 10vw, 84px) 0 clamp(26px, 6vw, 48px); }
-  .back { display: inline-block; color: var(--text-dim); text-decoration: none;
-    font-size: 0.88rem; margin-bottom: 22px; transition: color 0.2s ease; }
-  .back:hover { color: var(--green); }
-  .flag { display: inline-block; font-size: 0.74rem; font-weight: 800;
+  .top { text-align: center; padding: clamp(34px, 9vw, 72px) 0 clamp(20px, 6vw, 40px); }
+  .flag { display: inline-block; margin-top: 22px; font-size: 0.74rem; font-weight: 800;
     letter-spacing: 0.09em; color: #24003a; background: var(--green);
     padding: 5px 12px; border-radius: 999px; text-transform: uppercase; }
-  .title { font-size: clamp(2rem, 11vw, 3.6rem); font-weight: 900; color: #fff;
-    letter-spacing: -0.03em; margin-top: 16px; line-height: 1.05;
-    text-shadow: 0 0 34px rgba(210,255,0,0.32); }
-  .title em { font-style: normal; color: var(--green); }
-  .when { margin-top: 16px; color: var(--text-dim); max-width: 44ch;
-    margin-left: auto; margin-right: auto; }
+  h1.title { margin-top: 14px; font-size: clamp(2.1rem, 11vw, 3.6rem); font-weight: 900;
+    color: #fff; letter-spacing: -0.03em; line-height: 1.05;
+    text-shadow: 0 0 34px rgba(210,255,0,0.3); }
+  h1.title em { font-style: normal; color: var(--green); }
+  .intro { max-width: 48ch; margin: 16px auto 0; color: var(--text-dim);
+    font-size: clamp(1rem, 3.8vw, 1.1rem); }
 
-  /* A brick-by-brick feature list: each one is its own little scene. */
-  .feature { display: grid; gap: 18px; align-items: center; margin-top: clamp(34px, 8vw, 60px); }
-  .feature .words h3 { font-size: clamp(1.25rem, 5.4vw, 1.7rem); color: #fff;
-    letter-spacing: -0.01em; margin-bottom: 8px; }
-  .feature .words .kicker { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.1em;
+  .feature { max-width: 720px; margin: 0 auto; }
+  .kicker { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--green); }
-  .feature .words p { color: var(--text-dim); }
+  .feature h2 { text-align: left; font-size: clamp(1.5rem, 6.5vw, 2.1rem);
+    margin-top: 4px; text-shadow: none; }
+  .feature p { margin-top: 12px; color: var(--text-dim); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 
-  .art { position: relative; border: 1px solid var(--edge); border-radius: 18px;
-    aspect-ratio: 4 / 3; overflow: hidden;
-    background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(0,0,0,0.22));
-    box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
-  .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .later { border: 1px dashed rgba(255,255,255,0.16); border-radius: 14px;
+    padding: 14px 16px; margin-top: 20px; font-size: 0.86rem;
+    color: rgba(255,255,255,0.42); text-align: center; }
 
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .chip { font-size: 0.78rem; font-weight: 600; color: var(--text-dim);
-    border: 1px solid var(--edge); border-radius: 999px; padding: 6px 12px;
-    background: rgba(255,255,255,0.035);
-    transition: transform 0.18s ease, color 0.18s ease, border-color 0.18s ease; }
-  .chip:hover { transform: translateY(-2px); color: #fff; border-color: rgba(210,255,0,0.5); }
-
-  .signup { text-align: center; border: 1px solid rgba(210,255,0,0.32);
-    border-radius: 20px; padding: clamp(26px, 7vw, 40px) 22px;
-    background: rgba(210,255,0,0.05); }
-  .signup h2 { text-shadow: none; }
-  .signup .soon { display: inline-block; margin-top: 18px; padding: 12px 24px;
-    border-radius: 999px; border: 1px dashed rgba(255,255,255,0.28);
-    color: var(--text-dim); font-size: 0.92rem; }
-
-  @media (min-width: 760px) {
-    .feature { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .feature.flip .art { order: -1; }
+  /* A plain list of what changed, where a card each would be too much furniture */
+  .lines { margin-top: 22px; }
+  .lines div { display: flex; gap: 12px; padding: 11px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.95rem; }
+  .lines div:last-child { border-bottom: 0; }
+  .lines b { flex: 0 0 auto; min-width: 9em; color: #fff; font-weight: 700; }
+  .lines span { color: var(--text-dim); }
+  @media (max-width: 560px) {
+    .lines div { flex-direction: column; gap: 3px; padding: 10px 0; }
+    .lines b { min-width: 0; }
   }
+
+  .signup { max-width: 640px; margin: 0 auto; text-align: center;
+    border: 1px solid rgba(210,255,0,0.32); border-radius: 20px;
+    padding: clamp(26px, 7vw, 40px) 22px; background: rgba(210,255,0,0.05); }
+  .signup h2 { text-align: center; font-size: clamp(1.35rem, 5.5vw, 1.9rem); }
+  .signup p { margin-top: 12px; color: var(--text-dim); }
+  .waiting { display: inline-block; margin-top: 22px; padding: 13px 26px;
+    border: 1px dashed rgba(255,255,255,0.3); border-radius: 999px;
+    color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.95rem; }
 </style>
 </head>
 <body>
 <div class="glowfield" aria-hidden="true"></div>
-<div class="progress" id="progress" aria-hidden="true"></div>
 
 <main>
   <header class="top">
-    <a class="back" href="index.html">&larr; giga-ball.app</a>
-    <div><span class="flag">Sneak peek</span></div>
+    <div class="icon-float">
+      <img class="icon" src="assets/icon.png" alt="">
+    </div>
+    <img class="wordmark" src="assets/logo.png" alt="Giga-Ball">
+    <span class="flag">Sneak peek</span>
     <h1 class="title">Giga-Ball <em>1.3</em></h1>
-    <p class="when">
-      The biggest update since the game came out: a second endless mode, a challenge
-      that changes every day, and a field full of bricks that do things. Arriving
-      alongside iOS 27, in a month or two.
+    <p class="intro">
+      The biggest update since the game came out: a second endless mode, a challenge that
+      changes every day, and a field full of bricks that do things. Arriving alongside
+      iOS 27, in a month or two.
     </p>
   </header>
 
-  <section class="reveal" style="padding-top:0">
+  <section class="reveal">
     <div class="feature">
-      <div class="words">
-        <span class="kicker">New mode</span>
-        <h3>Endless Mayhem</h3>
-        <p>
-          Endless mode, let off the leash. The field descends as it always did, but now
-          the bricks fight back: they fall, wander, spin, explode, refill their
-          neighbours, and open portals across the screen. New power-ups act on the
-          paddle rather than the ball, and there are enough of them that no two runs
-          go the same way.
-        </p>
-        <div class="chips">
-          <span class="chip">22 new power-ups</span>
-          <span class="chip">Portals</span>
-          <span class="chip">Moving bricks</span>
-          <span class="chip">Its own leaderboard</span>
-        </div>
+      <div class="kicker">New mode</div>
+      <h2>Endless Mayhem</h2>
+      <p>
+        Endless mode, let off the leash. The field descends as it always did, but now the
+        bricks fight back: they fall, wander, spin, explode, refill their neighbours and
+        open portals across the screen. New power-ups act on the paddle rather than the
+        ball, and there are enough of them that no two runs go the same way.
+      </p>
+      <div class="tags">
+        <span class="pill">22 new power-ups</span>
+        <span class="pill">Portals</span>
+        <span class="pill">Moving bricks</span>
+        <span class="pill">Its own leaderboard</span>
       </div>
-      <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <g class="mayhem-row">
-            <rect x="20"  y="40" width="52" height="26" rx="2" fill="#fff" opacity="0.9"/>
-            <rect x="88"  y="40" width="52" height="26" rx="2" fill="#6aa8ff"/>
-            <rect x="156" y="40" width="52" height="26" rx="2" fill="#fff" opacity="0.9"/>
-            <rect x="224" y="40" width="52" height="26" rx="2" fill="#ff6b6b"/>
-            <rect x="292" y="40" width="52" height="26" rx="2" fill="#fff" opacity="0.9"/>
-          </g>
-          <g class="mayhem-row2">
-            <rect x="54"  y="86" width="52" height="26" rx="2" fill="#c58cff"/>
-            <rect x="122" y="86" width="52" height="26" rx="2" fill="#fff" opacity="0.75"/>
-            <rect x="190" y="86" width="52" height="26" rx="2" fill="#d2ff00"/>
-            <rect x="258" y="86" width="52" height="26" rx="2" fill="#fff" opacity="0.75"/>
-          </g>
-          <circle class="mayhem-ball" cx="200" cy="200" r="7" fill="#fff"/>
-          <rect x="160" y="250" width="80" height="9" rx="4.5" fill="#fff"/>
-        </svg>
-      </div>
+      <div class="later">Screenshots to follow, once it stops changing every week.</div>
     </div>
   </section>
 
-  <section class="reveal" style="padding-top:0">
-    <div class="feature flip">
-      <div class="words">
-        <span class="kicker">New every day</span>
-        <h3>The Daily Challenge</h3>
-        <p>
-          One challenge a day, the same for everybody, generated from the date itself.
-          It might be a classic level or an endless run, and it comes with twists:
-          one life, no power-ups, a field you cannot see until you hit it. You get one
-          scoring attempt, and the board resets at midnight UTC. Miss a day and you can
-          still go back and play it for fun.
-        </p>
-        <div class="chips">
-          <span class="chip">One attempt a day</span>
-          <span class="chip">Daily leaderboard</span>
-          <span class="chip">Browse past days</span>
-          <span class="chip">Twists</span>
-        </div>
-      </div>
-      <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <rect x="52" y="46" width="296" height="208" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-          <rect x="150" y="74" width="100" height="16" rx="8" fill="#d2ff00" opacity="0.85"/>
-          <rect x="96"  y="112" width="208" height="12" rx="6" fill="rgba(255,255,255,0.5)"/>
-          <g class="daily-twist">
-            <rect x="120" y="146" width="20" height="20" rx="5" fill="#8b3dd6"/>
-            <rect x="150" y="150" width="130" height="12" rx="6" fill="rgba(255,255,255,0.65)"/>
-          </g>
-          <g class="daily-twist2">
-            <rect x="120" y="186" width="20" height="20" rx="5" fill="#8b3dd6"/>
-            <rect x="150" y="190" width="104" height="12" rx="6" fill="rgba(255,255,255,0.65)"/>
-          </g>
-          <rect x="140" y="222" width="120" height="14" rx="7" fill="rgba(210,255,0,0.35)"/>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <section class="reveal" style="padding-top:0">
+  <section class="reveal">
     <div class="feature">
-      <div class="words">
-        <span class="kicker">New shapes</span>
-        <h3>Bricks that are not rectangles</h3>
-        <p>
-          Every brick in the game has been a rectangle since 2020, so every bounce has
-          been one of four answers. Three new shapes change that: a dome that scatters
-          an off-centre hit, a dish that gathers one back toward the middle, and a wedge
-          that sends everything reaching its slope the same way. The wedge is the closest
-          the field comes to a brick you can aim with.
-        </p>
-        <div class="chips">
-          <span class="chip">Convex</span>
-          <span class="chip">Concave</span>
-          <span class="chip">Wedge</span>
-        </div>
+      <div class="kicker">New mode</div>
+      <h2>Daily Challenge</h2>
+      <p>
+        One level, one run, the same for everybody, every day. A day picks a mode, a level
+        and a couple of <em>twists</em> - Fog of War hides the field until you hit it,
+        Drought makes power-ups scarce, One Life means what it says - and your first attempt
+        is the one that counts. Play it again afterwards as much as you like; those runs are
+        practice, and are labelled as such.
+      </p>
+      <div class="tags">
+        <span class="pill">A new day at midnight</span>
+        <span class="pill">Twists</span>
+        <span class="pill">One scoring attempt</span>
+        <span class="pill">Daily leaderboard</span>
       </div>
-      <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <polygon class="shape-a" points="40,150 140,150 140,120 90,84 40,120" fill="#fff" opacity="0.92"/>
-          <polygon class="shape-b" points="160,150 260,150 260,84 210,116 160,84" fill="#fff" opacity="0.92"/>
-          <polygon class="shape-c" points="280,150 380,150 380,84" fill="#fff" opacity="0.92"/>
-          <circle class="peek-ball" cx="90" cy="200" r="7" fill="#d2ff00"/>
-          <rect x="160" y="252" width="80" height="9" rx="4.5" fill="#fff"/>
-        </svg>
+      <div class="later">Screenshots to follow.</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="feature">
+      <div class="kicker">New bricks</div>
+      <h2>Bricks that are not rectangles</h2>
+      <p>
+        A brick is now two things: what it does when the ball arrives, and what it is like.
+        Those are independent, so any behaviour can wear any style - which is how you get a
+        spinning indestructible brick, an obstacle you cannot remove that shows you a
+        different angle every time the ball reaches it.
+      </p>
+      <div class="lines">
+        <div><b>Convex</b><span>A dome. Off-centre hits leave wider than they arrived - it scatters.</span></div>
+        <div><b>Concave</b><span>A dish. Hits near an edge are turned back inward - it collects.</span></div>
+        <div><b>Wedge</b><span>A right triangle. Everything reaching the slope leaves the same way.</span></div>
+        <div><b>Rounded</b><span>A rounded body, so glancing hits deflect unpredictably.</span></div>
+        <div><b>Spinning</b><span>Turns on the spot, and the bounce angle turns with it.</span></div>
+        <div><b>Flashing</b><span>Alternates between solid and passable. Timing, not aim.</span></div>
+        <div><b>Gravity</b><span>Falls into the empty cells below it as the field is cleared.</span></div>
+        <div><b>Moving</b><span>Wanders about within its own patch of the field.</span></div>
+        <div><b>Directional</b><span>Only takes damage from one side. Get underneath it.</span></div>
+        <div><b>Exploding</b><span>Takes its eight neighbours with it.</span></div>
+        <div><b>Spawner</b><span>Fills its empty neighbours when destroyed. Not a favour.</span></div>
+        <div><b>Portal</b><span>Never damaged. Sends the ball out somewhere else entirely.</span></div>
+        <div><b>Big and Tiny</b><span>Bricks of four cells, and quarter-cell bricks that hide in the gaps.</span></div>
+      </div>
+      <div class="later">Screenshots to follow, once the shapes are finished.</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="feature">
+      <div class="kicker">New power-ups</div>
+      <h2>Twenty-two more ways to change a run</h2>
+      <p>
+        The existing twenty-eight are untouched. These are new, and a good third of them are
+        working against you - green awards points and helps, red deducts and does not. Most
+        run on a clock, and a second one of the same kind extends it rather than starting it
+        over.
+      </p>
+      <div class="lines">
+        <div><b>Wrap-Around</b><span>Leave one side, arrive at the other - and the paddle wraps too, so the corners stop being safe.</span></div>
+        <div><b>Portal Paddle</b><span>A ball entering the paddle comes back in at the top, still travelling sideways.</span></div>
+        <div><b>Aimed Sticky</b><span>The ball is held; drag to choose the launch angle. Let go without dragging and nothing changes.</span></div>
+        <div><b>Ball Steering</b><span>Move the paddle and the ball follows it through the air.</span></div>
+        <div><b>Magnetism</b><span>Curves the ball back towards the paddle, and weakens the further away it is.</span></div>
+        <div><b>Wrecking Ball</b><span>Destroys any brick in one hit, whatever it is - and still bounces off it.</span></div>
+        <div><b>Laser Beam</b><span>A sustained beam that clears a whole column. One beam per ball in play.</span></div>
+        <div><b>Cull</b><span>Destroys half of what is left, chosen at random. Worth most exactly when things are worst.</span></div>
+        <div><b>Aura</b><span>A glow twice the ball's size that destroys whatever it touches.</span></div>
+        <div><b>Paddle Halo</b><span>A semicircle of light thrown up from the paddle into the lower rows.</span></div>
+        <div><b>Lock and Key</b><span>Lock freezes every timer you have running. Key starts them again - and only drops while a Lock is on.</span></div>
+        <div><b>Trajectory Line</b><span>Draws the ball's path ahead, bouncing off the walls, stopping at the first brick.</span></div>
+        <div><b>Landing Marker</b><span>Marks the spot where the ball will cross the paddle's line.</span></div>
+        <div><b>Clear and Retreat</b><span>Destroys the lowest row and pushes the whole field back up one.</span></div>
+        <div><b>Descent</b><span>The field comes down continuously while it runs. Bricks pushed off the bottom score nothing.</span></div>
+        <div><b>Multi-Ball</b><span>Up to four at once, and the run continues while any one of them is still up.</span></div>
+        <div><b>Reversed Controls</b><span>The paddle goes the other way. Bad.</span></div>
+        <div><b>Inert Paddle</b><span>The paddle stops affecting the bounce angle at all. Bad.</span></div>
+        <div><b>Flipped Angle</b><span>The paddle's influence on the angle is inverted. Bad.</span></div>
+        <div><b>Randomised Bounce</b><span>Every bounce gains a random offset. Bad.</span></div>
+        <div><b>Infill</b><span>Puts bricks back into empty cells. Very bad.</span></div>
+        <div><b>Wipe</b><span>Ends everything you had running. Will not shift a Lock.</span></div>
       </div>
     </div>
   </section>
 
-  <section class="reveal" style="padding-top:0">
+  <section class="reveal">
     <h2>And the rest of it</h2>
     <p class="sub">Smaller things, mostly asked for by the people who play it.</p>
+
     <div class="grid">
       <div class="card">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Ring timers</h3>
         <p>Power-up timers moved from a bar under each icon to a ring around it, so you can read what is running at a glance.</p>
       </div>
       <div class="card">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>Run stats</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 20V10"/><path d="M12 20V4"/><path d="M19 20v-7"/></svg>Run stats</h3>
         <p>Every endless run now ends with its own numbers: height, time, paddle hits, bricks destroyed, and which power-ups you kept missing.</p>
       </div>
       <div class="card">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v4"/><circle cx="12" cy="13" r="7"/><path d="M9 13h6"/></svg>Recents</h3>
-        <p>Pause mid-run and the reference pages lead with what you have just seen, rather than making you hunt the catalogue for it.</p>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Recents</h3>
+        <p>Pause mid-run and the reference pages show what you have actually collected this run, and what each one did.</p>
       </div>
       <div class="card">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/></svg>Carry on</h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>New menus</h3>
+        <p>Every mode has its own menu with the right leaderboard on it, and a finished run returns to the one it started from.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M7 21h10"/></svg>Carry on</h3>
         <p>Close the app mid-run and it picks up where you left off, daily challenges included.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 7-8"/><path d="M14 7h6v6"/></svg>Scores that count up</h3>
+        <p>Finish a level or a run and the numbers tally up to where they landed, with the ticking to match.</p>
       </div>
     </div>
   </section>
@@ -214,14 +220,14 @@
   <section class="reveal">
     <div class="signup">
       <h2>Want to play it early?</h2>
-      <p class="sub">
-        There will be a public TestFlight for 1.3 so you can break it before everybody
-        else does. The link is waiting on Apple's review of the beta.
+      <p>
+        There will be a public TestFlight for 1.3 so you can break it before everybody else
+        does. The link is waiting on Apple's review of the beta.
       </p>
-      <div class="soon">TestFlight link coming shortly</div>
-      <p class="sub" style="margin-top:20px">
-        Email <a href="mailto:contact@giga-ball.app?subject=Giga-Ball%201.3%20TestFlight" style="color:var(--green)">contact@giga-ball.app</a>
-        with "TestFlight" in the subject and you will get the link the moment it is live.
+      <div class="waiting">TestFlight link coming shortly</div>
+      <p style="margin-top:18px">
+        Email <a href="mailto:contact@giga-ball.app?subject=TestFlight" style="color:var(--green)">contact@giga-ball.app</a>
+        with "TestFlight" in the subject and you will be added to the waiting list.
       </p>
     </div>
   </section>
@@ -233,29 +239,5 @@
 </main>
 
 <script src="shared.js"></script>
-<script>
-// Small, cheap animations in the feature art: enough to show these are live things
-// rather than diagrams, quiet enough not to compete with the words next to them.
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  var css = document.createElement('style');
-  css.textContent = [
-    '@keyframes descend { 0% { transform: translateY(-18px); opacity: 0 } 12% { opacity: 1 } 100% { transform: translateY(52px); opacity: 1 } }',
-    '@keyframes bobble { 0%,100% { transform: translate(0,0) } 25% { transform: translate(46px,-30px) } 50% { transform: translate(-8px,-58px) } 75% { transform: translate(-52px,-24px) } }',
-    '@keyframes glowpulse { 0%,100% { opacity: 0.35 } 50% { opacity: 0.85 } }',
-    '.mayhem-row { animation: descend 7s linear infinite }',
-    '.mayhem-row2 { animation: descend 7s linear infinite; animation-delay: -3.5s }',
-    '.mayhem-ball, .peek-ball { animation: bobble 5.5s ease-in-out infinite }',
-    '.daily-twist { animation: glowpulse 3.4s ease-in-out infinite }',
-    '.daily-twist2 { animation: glowpulse 3.4s ease-in-out infinite; animation-delay: -1.7s }',
-    '.shape-a, .shape-b, .shape-c { transition: transform 0.4s cubic-bezier(.2,.8,.2,1) }',
-    '.art:hover .shape-a { transform: translateY(-8px) }',
-    '.art:hover .shape-b { transform: translateY(-8px); transition-delay: 0.05s }',
-    '.art:hover .shape-c { transform: translateY(-8px); transition-delay: 0.1s }'
-  ].join('\n');
-  document.head.appendChild(css);
-})();
-</script>
 </body>
 </html>

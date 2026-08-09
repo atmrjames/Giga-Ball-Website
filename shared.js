@@ -17,19 +17,29 @@
     watched.forEach(function (el) { seen.observe(el); });
   }
 
-  var bar = document.getElementById('progress');
-  if (!bar) return;
-  var ticking = false;
-  function update() {
-    var scrolled = window.scrollY;
-    var total = document.body.scrollHeight - window.innerHeight;
-    bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-    ticking = false;
-  }
-  window.addEventListener('scroll', function () {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
+})();
+
+// The app icon leans towards the pointer. Small numbers on purpose: it should read as the
+// icon noticing you rather than as a thing spinning about.
+(function () {
+  var icon = document.querySelector('.icon');
+  if (!icon) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var TILT = 13, REACH = 460;
+  window.addEventListener('mousemove', function (e) {
+    var box = icon.getBoundingClientRect();
+    var cx = box.left + box.width/2, cy = box.top + box.height/2;
+    var dx = e.clientX - cx, dy = e.clientY - cy;
+    if (Math.abs(dx) > REACH || Math.abs(dy) > REACH) {
+      icon.classList.remove('tracking');
+      icon.style.setProperty('--lean-x', '0deg');
+      icon.style.setProperty('--lean-y', '0deg');
+      return;
+    }
+    icon.classList.add('tracking');
+    icon.style.setProperty('--lean-y', (dx/REACH*TILT).toFixed(2) + 'deg');
+    icon.style.setProperty('--lean-x', (-dy/REACH*TILT).toFixed(2) + 'deg');
   }, { passive: true });
-  update();
 })();

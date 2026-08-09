@@ -17,41 +17,32 @@
 <style>
   .hero { text-align: center; padding: clamp(44px, 12vw, 104px) 0 clamp(32px, 8vw, 64px); }
 
-  .icon { width: clamp(96px, 26vw, 148px); height: auto; border-radius: 24%;
-    filter: drop-shadow(0 18px 44px rgba(0,0,0,0.55));
-    animation: breathe 6s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
-
-  .wordmark { display: block; width: min(420px, 84%); margin: 24px auto 0;
-    filter: drop-shadow(0 0 26px rgba(210,255,0,0.42)); }
-
   .tagline { margin-top: 20px; font-size: clamp(1.1rem, 5vw, 1.6rem);
     font-weight: 700; color: #fff; letter-spacing: -0.01em; }
   .blurb { max-width: 46ch; margin: 14px auto 0; color: var(--text-dim);
     font-size: clamp(0.98rem, 3.6vw, 1.08rem); }
   .store-note { margin-top: 12px; font-size: 0.84rem; color: var(--text-dim); }
 
-  /* The self-playing game */
-  .demo { position: relative; width: 100%; max-width: 480px;
-    margin: clamp(30px, 8vw, 52px) auto 0; aspect-ratio: 5 / 3;
-    border: 1px solid var(--edge); border-radius: 16px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(0,0,0,0.2));
-    overflow: hidden; touch-action: none; cursor: none;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 0 40px rgba(210,255,0,0.03); }
-  .demo.touched { cursor: none; border-color: rgba(210,255,0,0.4); }
-  .demo-brick { position: absolute; border-radius: 1px; background: #fff;
-    border: 1px solid rgba(0,0,0,0.28);
-    transition: opacity 0.18s ease, transform 0.18s ease; }
-  .demo-brick.gone { opacity: 0; transform: scale(0.72); }
-  .demo-brick.gold { background: linear-gradient(180deg, #ffd84d, #f5a300); }
-  .demo-ball { position: absolute; border-radius: 50%; background: #fff;
-    box-shadow: 0 0 10px rgba(255,255,255,0.6); }
-  .demo-paddle { position: absolute; border-radius: 999px; background: #fff;
-    box-shadow: 0 0 16px rgba(210,255,0,0.3); }
-  .demo-hint { position: absolute; left: 0; right: 0; bottom: 9px; text-align: center;
-    font-size: 0.76rem; color: rgba(255,255,255,0.45); pointer-events: none;
-    transition: opacity 0.3s ease; }
-  .demo.touched .demo-hint { opacity: 0; }
+  /* The wall. Not the game - a wall of the game's bricks that breaks under a finger or a
+     cursor and builds itself back. */
+  .wall { position: relative; width: 100%; max-width: 520px;
+    margin: clamp(30px, 8vw, 52px) auto 0; aspect-ratio: 2 / 1;
+    border: 1px solid var(--edge); border-radius: 16px; overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.22));
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45); touch-action: none; }
+  .wall-brick { position: absolute; border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.3);
+    transition: transform 0.34s cubic-bezier(.3,1.4,.5,1), opacity 0.34s ease; }
+  .wall-brick.broken { transform: scale(0.3) rotate(12deg); opacity: 0; }
+  /* Both labels sit over the bricks, so both bring their own shade with them - white on
+     lime is unreadable and the wall is lime about a sixth of the time */
+  .wall-note { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: 22px 0 9px; text-align: center; font-size: 0.78rem;
+    color: rgba(255,255,255,0.8); pointer-events: none;
+    background: linear-gradient(transparent, rgba(12,0,20,0.82) 55%); }
+  .wall-score { position: absolute; top: 9px; right: 10px; z-index: 2;
+    padding: 3px 10px; border-radius: 999px; background: rgba(12,0,20,0.72);
+    font-size: 0.86rem; font-weight: 800; color: var(--green); pointer-events: none; }
 
   /* Screenshots: side by side at every width, per the play test */
   .shots { display: flex; gap: 12px; justify-content: center; margin-top: 34px; }
@@ -62,8 +53,12 @@
   .phone img { width: 100%; display: block; border-radius: 21px;
     transition: opacity 0.5s ease; }
   .phone:hover { transform: translateY(-8px); }
-  .phone .caption { text-align: center; font-size: 0.74rem; color: var(--text-dim);
-    padding: 7px 0 3px; }
+  .phone .caption { text-align: center; padding: 10px 0 4px;
+    font-size: clamp(0.95rem, 4.4vw, 1.25rem); font-weight: 900;
+    letter-spacing: -0.01em; color: var(--green);
+    text-shadow: 0 0 18px rgba(210,255,0,0.45); }
+  /* The mode's name in the app's own colour and weight, at the size the app gives it -
+     these were small grey captions and the play test wanted the modes announced */
 
   .honest { margin: 0 auto; max-width: 620px; text-align: center;
     border: 1px solid rgba(210,255,0,0.3); border-radius: 18px;
@@ -85,11 +80,12 @@
 </head>
 <body>
 <div class="glowfield" aria-hidden="true"></div>
-<div class="progress" id="progress" aria-hidden="true"></div>
 
 <main>
   <header class="hero">
-    <img class="icon" src="assets/icon.png" alt="">
+    <div class="icon-float">
+      <img class="icon" src="assets/icon.png" alt="">
+    </div>
     <img class="wordmark" src="assets/logo.png" alt="Giga-Ball">
     <h1 class="sr-only">Giga-Ball</h1>
 
@@ -112,8 +108,9 @@
     </a>
     <p class="store-note">Free. No ads, no in-app purchases, no accounts.</p>
 
-    <div class="demo" id="demo" aria-hidden="true">
-      <div class="demo-hint">Touch to take the paddle</div>
+    <div class="wall" id="wall" aria-hidden="true">
+      <div class="wall-score" id="wallScore">0</div>
+      <div class="wall-note">Sweep the wall. It grows back.</div>
     </div>
   </header>
 
@@ -213,170 +210,78 @@
   }, 4200);
 })();
 
-// A game of Giga-Ball playing itself, in the app's own proportions: bricks twice as wide
-// as they are tall, a ball about half a brick high, a capsule paddle. Touch or hover and
-// the paddle is yours; leave and it plays on.
+// The wall.
+//
+// This replaces a demo that played itself: it played badly, and a visitor's first
+// impression of the game was a bad game (play-test round 17). A wall of the app's own
+// bricks that breaks where you touch it makes the same point - these are the colours, this
+// is the grid, breaking them is the game - without pretending to be a run.
 (function () {
-  var stage = document.getElementById('demo');
+  var stage = document.getElementById('wall');
+  var scoreEl = document.getElementById('wallScore');
   if (!stage) return;
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  var COLS = 9, ROWS = 4;
-  var bricks = [], ball, paddle, hint, w = 0, h = 0, raf = null;
-  var bx, by, vx, vy, px, ballR, padW, padH, brickW, brickH, speed;
-  var human = null;
+  var PALETTE = ['#ff4fa3', '#a03ce8', '#22d3ee', '#d2ff00', '#ff8a3c', '#f2f2f2'];
+  var COLS = 10, ROWS = 10, REGROW = 2600;
+  var bricks = [], score = 0, w = 0, h = 0;
 
   function build() {
-    hint = stage.querySelector('.demo-hint');
-    stage.innerHTML = '';
-    if (hint) stage.appendChild(hint);
-    bricks = [];
-    w = stage.clientWidth;
-    h = stage.clientHeight;
+    w = stage.clientWidth; h = stage.clientHeight;
     if (!w || !h) return;
+    bricks.forEach(function (b) { b.el.remove(); });
+    bricks = [];
 
-    // The app's grid: a cell twice as wide as it is tall, bricks filling it with a
-    // hairline between, which is what the border on each brick is doing
-    brickW = w / COLS;
-    brickH = brickW / 2;
-
+    // The app's cell is twice as wide as it is tall, and the box is twice as wide as it
+    // is high - so an equal number of columns and rows is what produces that shape, at
+    // whatever size the box ends up
+    var bw = w/COLS, bh = h/ROWS;
     for (var r = 0; r < ROWS; r++) {
       for (var c = 0; c < COLS; c++) {
-        if (r === 0 && (c === 0 || c === COLS - 1)) continue;
-        var b = document.createElement('div');
-        b.className = 'demo-brick' + ((r === 2 && c === 4) ? ' gold' : '');
-        b.style.width = brickW + 'px';
-        b.style.height = brickH + 'px';
-        b.style.left = (c * brickW) + 'px';
-        b.style.top = (h * 0.10 + r * brickH) + 'px';
-        stage.appendChild(b);
-        bricks.push({ el: b, x: c * brickW, y: h * 0.10 + r * brickH, alive: true });
+        var el = document.createElement('div');
+        el.className = 'wall-brick';
+        el.style.width = bw + 'px';
+        el.style.height = bh + 'px';
+        el.style.left = (c*bw) + 'px';
+        el.style.top = (r*bh) + 'px';
+        el.style.background = PALETTE[Math.abs((r*73 + c*151) ^ (r*c*17)) % PALETTE.length];
+        // Scattered rather than striped: a regular pattern read as wallpaper
+        stage.appendChild(el);
+        bricks.push({ el: el, x: c*bw + bw/2, y: r*bh + bh/2, alive: true });
       }
     }
-
-    ballR = brickH * 0.30;
-    ball = document.createElement('div');
-    ball.className = 'demo-ball';
-    ball.style.width = ball.style.height = (ballR * 2) + 'px';
-    stage.appendChild(ball);
-
-    padW = brickW * 2.4;
-    padH = brickH * 0.42;
-    paddle = document.createElement('div');
-    paddle.className = 'demo-paddle';
-    paddle.style.width = padW + 'px';
-    paddle.style.height = padH + 'px';
-    stage.appendChild(paddle);
-
-    bx = w * 0.5; by = h * 0.62;
-    speed = Math.max(2.2, w * 0.008);
-    vx = speed * 0.6; vy = -speed;
-    px = w * 0.5 - padW / 2;
-    draw();
   }
 
-  function padY() { return h - padH - h * 0.07; }
-
-  function draw() {
-    ball.style.transform = 'translate(' + (bx - ballR) + 'px,' + (by - ballR) + 'px)';
-    paddle.style.transform = 'translate(' + px + 'px,' + padY() + 'px)';
-  }
-
-  // Where the ball will cross the paddle's line, walls included. The self-player aims at
-  // that rather than at the ball, which is the difference between playing and flailing.
-  function predictedX() {
-    if (vy <= 0) return w * 0.5;
-    var t = (padY() - by) / vy;
-    var x = bx + vx * t;
-    var span = w * 2;
-    x = ((x % span) + span) % span;
-    return x > w ? span - x : x;
-  }
-
-  function revive() {
-    if (bricks.some(function (b) { return b.alive; })) return;
-    bricks.forEach(function (b) { b.alive = true; b.el.classList.remove('gone'); });
-  }
-
-  function step() {
-    bx += vx; by += vy;
-
-    if (bx - ballR < 0) { bx = ballR; vx = Math.abs(vx); }
-    if (bx + ballR > w) { bx = w - ballR; vx = -Math.abs(vx); }
-    if (by - ballR < 0) { by = ballR; vy = Math.abs(vy); }
-
-    var py = padY();
-    if (vy > 0 && by + ballR >= py && by - ballR < py + padH &&
-        bx > px - ballR && bx < px + padW + ballR) {
-      by = py - ballR;
-      vy = -Math.abs(vy);
-      vx += ((bx - (px + padW / 2)) / (padW / 2)) * 1.1;
-      vx = Math.max(-speed * 1.4, Math.min(speed * 1.4, vx));
-    }
-
-    if (by - ballR > h + 30) { bx = w * 0.5; by = h * 0.5; vx = speed * 0.5; vy = speed; }
-
+  function breakNear(x, y) {
+    var reach = Math.max(18, w*0.045);
     for (var i = 0; i < bricks.length; i++) {
       var b = bricks[i];
       if (!b.alive) continue;
-      if (bx + ballR > b.x && bx - ballR < b.x + brickW &&
-          by + ballR > b.y && by - ballR < b.y + brickH) {
-        b.alive = false;
-        b.el.classList.add('gone');
-        // Bounce off whichever face was actually met, so a brick hit from the side does
-        // not send the ball back the way it came
-        var fromSide = Math.min(Math.abs(bx - b.x), Math.abs(bx - (b.x + brickW)))
-                     < Math.min(Math.abs(by - b.y), Math.abs(by - (b.y + brickH)));
-        if (fromSide) { vx = -vx; } else { vy = -vy; }
-        revive();
-        break;
-      }
+      if (Math.abs(b.x - x) > reach || Math.abs(b.y - y) > reach) continue;
+      b.alive = false;
+      b.el.classList.add('broken');
+      score += 10;
+      // Back in its own time, so a swept wall refills behind you rather than all at once
+      (function (brick) {
+        setTimeout(function () {
+          brick.alive = true;
+          brick.el.classList.remove('broken');
+        }, REGROW + Math.random()*900);
+      })(b);
     }
-
-    var wanted = (human === null) ? predictedX() - padW / 2 : human - padW / 2;
-    px += (wanted - px) * (human === null ? 0.14 : 0.34);
-    px = Math.max(0, Math.min(w - padW, px));
-
-    draw();
-    raf = requestAnimationFrame(step);
+    if (scoreEl) scoreEl.textContent = score;
   }
 
-  function take(event) {
+  function at(e) {
     var box = stage.getBoundingClientRect();
-    var point = event.touches ? event.touches[0].clientX : event.clientX;
-    human = point - box.left;
-    stage.classList.add('touched');
-  }
-  function release() { human = null; stage.classList.remove('touched'); }
-
-  stage.addEventListener('mousemove', take);
-  stage.addEventListener('mouseleave', release);
-  stage.addEventListener('touchstart', function (e) { take(e); e.preventDefault(); }, { passive: false });
-  stage.addEventListener('touchmove', function (e) { take(e); e.preventDefault(); }, { passive: false });
-  stage.addEventListener('touchend', release);
-
-  function start() {
-    if (raf) { cancelAnimationFrame(raf); raf = null; }
-    build();
-    if (!reduced.matches && w) raf = requestAnimationFrame(step);
+    var point = e.touches ? e.touches[0] : e;
+    breakNear(point.clientX - box.left, point.clientY - box.top);
   }
 
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(start, 180);
-  });
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { if (!raf && !reduced.matches) raf = requestAnimationFrame(step); }
-        else if (raf) { cancelAnimationFrame(raf); raf = null; }
-      });
-    }, { threshold: 0.1 }).observe(stage);
-  }
-
-  start();
+  stage.addEventListener('mousemove', at, { passive: true });
+  stage.addEventListener('touchstart', at, { passive: true });
+  stage.addEventListener('touchmove', at, { passive: true });
+  window.addEventListener('resize', build);
+  build();
 })();
 </script>
 </body>
