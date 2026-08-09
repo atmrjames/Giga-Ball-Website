@@ -23,26 +23,21 @@
     font-size: clamp(0.98rem, 3.6vw, 1.08rem); }
   .store-note { margin-top: 12px; font-size: 0.84rem; color: var(--text-dim); }
 
-  /* The wall. Not the game - a wall of the game's bricks that breaks under a finger or a
-     cursor and builds itself back. */
-  .wall { position: relative; width: 100%; max-width: 520px;
-    margin: clamp(30px, 8vw, 52px) auto 0; aspect-ratio: 2 / 1;
-    border: 1px solid var(--edge); border-radius: 16px; overflow: hidden;
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.22));
-    box-shadow: 0 20px 60px rgba(0,0,0,0.45); touch-action: none; }
-  .wall-brick { position: absolute; border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.3);
-    transition: transform 0.34s cubic-bezier(.3,1.4,.5,1), opacity 0.34s ease; }
-  .wall-brick.broken { transform: scale(0.3) rotate(12deg); opacity: 0; }
-  /* Both labels sit over the bricks, so both bring their own shade with them - white on
-     lime is unreadable and the wall is lime about a sixth of the time */
-  .wall-note { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
-    padding: 22px 0 9px; text-align: center; font-size: 0.78rem;
-    color: rgba(255,255,255,0.8); pointer-events: none;
-    background: linear-gradient(transparent, rgba(12,0,20,0.82) 55%); }
-  .wall-score { position: absolute; top: 9px; right: 10px; z-index: 2;
-    padding: 3px 10px; border-radius: 999px; background: rgba(12,0,20,0.72);
-    font-size: 0.86rem; font-weight: 800; color: var(--green); pointer-events: none; }
+  /* The hero carousel: one phone, rotating through real screenshots.
+     Every slide is stacked in the same grid cell so the frame keeps one height and the
+     images crossfade in place rather than the page jumping between them. */
+  .reel { position: relative; width: min(272px, 62vw); margin: clamp(30px, 8vw, 50px) auto 0; }
+  .reel-frame { display: grid; border-radius: 28px; padding: 7px;
+    background: linear-gradient(160deg, #4a2a63, #1a0d24);
+    box-shadow: 0 26px 70px rgba(0,0,0,0.6); }
+  .reel-frame img { grid-area: 1 / 1; width: 100%; display: block; border-radius: 22px;
+    opacity: 0; transition: opacity 0.9s ease; }
+  .reel-frame img.on { opacity: 1; }
+  .reel-dots { display: flex; gap: 7px; justify-content: center; margin-top: 14px; }
+  .reel-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%;
+    background: rgba(255,255,255,0.22); cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease; }
+  .reel-dots button.on { background: var(--green); transform: scale(1.35); }
 
   /* Screenshots: side by side at every width, per the play test */
   .shots { display: flex; gap: 12px; justify-content: center; margin-top: 34px; }
@@ -108,9 +103,9 @@
     </a>
     <p class="store-note">Free. No ads, no in-app purchases, no accounts.</p>
 
-    <div class="wall" id="wall" aria-hidden="true">
-      <div class="wall-score" id="wallScore">0</div>
-      <div class="wall-note">Sweep the wall. It grows back.</div>
+    <div class="reel" id="reel" aria-hidden="true">
+      <div class="reel-frame" id="reelFrame"></div>
+      <div class="reel-dots" id="reelDots"></div>
     </div>
   </header>
 
@@ -210,78 +205,62 @@
   }, 4200);
 })();
 
-// The wall.
+// The hero's screenshots, rotating.
 //
-// This replaces a demo that played itself: it played badly, and a visitor's first
-// impression of the game was a bad game (play-test round 17). A wall of the app's own
-// bricks that breaks where you touch it makes the same point - these are the colours, this
-// is the grid, breaking them is the game - without pretending to be a run.
+// This replaces first a demo that played itself and then a wall you could break: the
+// first made the game look worse than it is, and the second was not the game at all
+// (play-test rounds 17 and 18). What sells it is what it actually looks like, so this
+// is real screenshots in a phone, crossfading, with dots to jump between them.
+//
+// To add one: drop the file in assets/ and add its path and caption here. Nothing else
+// needs to change - the frame, the dots and the timer are all built from this list.
 (function () {
-  var stage = document.getElementById('wall');
-  var scoreEl = document.getElementById('wallScore');
-  if (!stage) return;
+  var SHOTS = [
+    { src: 'assets/shot-invader.png', alt: 'A Giga-Ball level shaped like a space invader' },
+    { src: 'assets/shot-endless.png', alt: 'Endless mode, with the field descending' },
+    { src: 'assets/shot-classic.png', alt: 'A Giga-Ball level from one of the classic packs' }
+  ];
+  var HOLD = 3800;
 
-  var PALETTE = ['#ff4fa3', '#a03ce8', '#22d3ee', '#d2ff00', '#ff8a3c', '#f2f2f2'];
-  var COLS = 10, ROWS = 10, REGROW = 2600;
-  var bricks = [], score = 0, w = 0, h = 0;
+  var frame = document.getElementById('reelFrame');
+  var dots = document.getElementById('reelDots');
+  var reel = document.getElementById('reel');
+  if (!frame || !dots || !SHOTS.length) return;
 
-  function build() {
-    w = stage.clientWidth; h = stage.clientHeight;
-    if (!w || !h) return;
-    bricks.forEach(function (b) { b.el.remove(); });
-    bricks = [];
+  var slides = SHOTS.map(function (shot, i) {
+    var img = document.createElement('img');
+    img.src = shot.src;
+    img.alt = shot.alt;
+    if (i === 0) img.classList.add('on');
+    frame.appendChild(img);
 
-    // The app's cell is twice as wide as it is tall, and the box is twice as wide as it
-    // is high - so an equal number of columns and rows is what produces that shape, at
-    // whatever size the box ends up
-    var bw = w/COLS, bh = h/ROWS;
-    for (var r = 0; r < ROWS; r++) {
-      for (var c = 0; c < COLS; c++) {
-        var el = document.createElement('div');
-        el.className = 'wall-brick';
-        el.style.width = bw + 'px';
-        el.style.height = bh + 'px';
-        el.style.left = (c*bw) + 'px';
-        el.style.top = (r*bh) + 'px';
-        el.style.background = PALETTE[Math.abs((r*73 + c*151) ^ (r*c*17)) % PALETTE.length];
-        // Scattered rather than striped: a regular pattern read as wallpaper
-        stage.appendChild(el);
-        bricks.push({ el: el, x: c*bw + bw/2, y: r*bh + bh/2, alive: true });
-      }
-    }
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', 'Screenshot ' + (i + 1));
+    if (i === 0) dot.classList.add('on');
+    dot.addEventListener('click', function () { show(i); restart(); });
+    dots.appendChild(dot);
+    return { img: img, dot: dot };
+  });
+
+  var at = 0, timer = null;
+  function show(next) {
+    slides[at].img.classList.remove('on');
+    slides[at].dot.classList.remove('on');
+    at = (next + slides.length) % slides.length;
+    slides[at].img.classList.add('on');
+    slides[at].dot.classList.add('on');
   }
-
-  function breakNear(x, y) {
-    var reach = Math.max(18, w*0.045);
-    for (var i = 0; i < bricks.length; i++) {
-      var b = bricks[i];
-      if (!b.alive) continue;
-      if (Math.abs(b.x - x) > reach || Math.abs(b.y - y) > reach) continue;
-      b.alive = false;
-      b.el.classList.add('broken');
-      score += 10;
-      // Back in its own time, so a swept wall refills behind you rather than all at once
-      (function (brick) {
-        setTimeout(function () {
-          brick.alive = true;
-          brick.el.classList.remove('broken');
-        }, REGROW + Math.random()*900);
-      })(b);
-    }
-    if (scoreEl) scoreEl.textContent = score;
+  function restart() {
+    clearInterval(timer);
+    timer = setInterval(function () { show(at + 1); }, HOLD);
   }
+  restart();
 
-  function at(e) {
-    var box = stage.getBoundingClientRect();
-    var point = e.touches ? e.touches[0] : e;
-    breakNear(point.clientX - box.left, point.clientY - box.top);
-  }
-
-  stage.addEventListener('mousemove', at, { passive: true });
-  stage.addEventListener('touchstart', at, { passive: true });
-  stage.addEventListener('touchmove', at, { passive: true });
-  window.addEventListener('resize', build);
-  build();
+  // Stops while you are looking at one - a screenshot that changes under the cursor is
+  // a screenshot nobody finishes reading
+  reel.addEventListener('mouseenter', function () { clearInterval(timer); });
+  reel.addEventListener('mouseleave', restart);
 })();
 </script>
 </body>
