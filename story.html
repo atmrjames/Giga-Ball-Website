@@ -7,7 +7,7 @@
 <meta name="description" content="How Giga-Ball went from a game remembered from childhood to an App Store release: nine months of learning Swift, a redundancy, a move to Australia, and a launch in a pandemic.">
 <meta name="theme-color" content="#1b0026">
 <meta property="og:title" content="How Giga-Ball was made">
-<meta property="og:description" content="One person, no studio, and about a year and a half of evenings.">
+<meta property="og:description" content="One person, no studio, and about two years of evenings.">
 <meta property="og:image" content="https://giga-ball.app/assets/icon.png">
 <meta property="og:url" content="https://giga-ball.app/story.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .top { text-align: center; padding: clamp(34px, 9vw, 72px) 0 clamp(16px, 5vw, 34px); }
+  .top { text-align: center; padding: clamp(34px, 9vw, 72px) 0 clamp(10px, 4vw, 24px); }
   .flag { display: inline-block; margin-top: 22px; font-size: 0.74rem; font-weight: 800;
     letter-spacing: 0.09em; color: #24003a; background: var(--green);
     padding: 5px 12px; border-radius: 999px; text-transform: uppercase; }
@@ -23,19 +23,25 @@
     color: #fff; letter-spacing: -0.03em; line-height: 1.06;
     text-shadow: 0 0 34px rgba(210,255,0,0.3); }
   h1.title em { font-style: normal; color: var(--green); }
-  .intro { max-width: 46ch; margin: 16px auto 0; color: var(--text-dim);
-    font-size: clamp(1rem, 3.8vw, 1.1rem); }
 
-  /* The story is a column of chapters, each a year-marker, a heading and prose */
+  /* Three parts, each announced, each a run of headed passages. The three are the three
+     the original blog was written in, so somebody who read it then finds it where it was */
   article { max-width: 660px; margin: 0 auto; }
-  .chapter { padding: clamp(30px, 8vw, 56px) 0; }
-  .when { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em;
+
+  .partmark { text-align: center; padding: clamp(46px, 11vw, 78px) 0 0; }
+  .partmark .no { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--green); }
-  .chapter h2 { text-align: left; font-size: clamp(1.35rem, 6vw, 1.9rem);
-    margin-top: 4px; text-shadow: none; }
-  .chapter p { margin-top: 14px; color: var(--text-dim);
+  .partmark h2 { font-size: clamp(1.6rem, 7vw, 2.3rem); margin-top: 6px;
+    text-shadow: none; }
+  .partmark .rule { width: 46px; height: 3px; margin: 18px auto 0; border-radius: 2px;
+    background: var(--green); box-shadow: 0 0 16px rgba(210,255,0,0.6); }
+
+  .passage { padding: clamp(22px, 6vw, 34px) 0 0; }
+  .passage h3 { font-size: clamp(1.1rem, 4.8vw, 1.35rem); color: #fff;
+    letter-spacing: -0.01em; }
+  .passage p { margin-top: 12px; color: var(--text-dim);
     font-size: clamp(0.98rem, 3.7vw, 1.04rem); }
-  .chapter p strong { color: #fff; font-weight: 600; }
+  .passage p strong { color: #fff; font-weight: 600; }
 
   figure { margin-top: 26px; }
   figure img { width: 100%; display: block; border-radius: 14px;
@@ -49,7 +55,7 @@
     background: rgba(210,255,0,0.05); color: #fff;
     font-size: clamp(1rem, 4vw, 1.1rem); font-weight: 600; line-height: 1.5; }
 
-  .ends { max-width: 660px; margin: 0 auto; text-align: center;
+  .ends { max-width: 660px; margin: clamp(40px, 10vw, 70px) auto 0; text-align: center;
     border: 1px solid rgba(210,255,0,0.3); border-radius: 20px;
     padding: clamp(26px, 7vw, 40px) 22px; background: rgba(210,255,0,0.05); }
   .ends p { color: var(--text-dim); margin-top: 12px; }
@@ -69,20 +75,107 @@
   </header>
 
   <article>
-    <section class="chapter reveal">
-      <div class="when">Before any of it</div>
-      <h2>A game I could not find again</h2>
+
+    <!-- ================= PART ONE ================= -->
+    <div class="partmark reveal">
+      <div class="no">Part one</div>
+      <h2>The birth of Giga-Ball</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="passage reveal">
+      <h3>Something of my own</h3>
       <p>
-        I am a Product Design Engineer by trade, and I had wanted for years to make
-        something that was mine, something I was solely responsible for, which is a
-        novelty you rarely get at work. The idea I kept coming back to was an app.
+        I always had an ambition to do something beyond my day job. By myself, for myself,
+        on my own terms. I like my job as a Product Design Engineer, but being solely
+        responsible for producing something is a novelty you do not often get at work, even
+        as a designer.
       </p>
       <p>
-        I also had a game stuck in my head. As a kid I played a brick breaker called
-        Megaball to death. Years later I went looking for something like it on the App
-        Store and came away disappointed: the good ones felt amateur, and the polished ones
-        were <strong>full of adverts and in-app purchases</strong>. There was a gap where
-        the game I wanted should have been.
+        I had plenty of ideas over the years and committed to none of them. The one I kept
+        coming back to was an app. It appealed on several levels: an unquenched interest in
+        programming, already owning the tools, being able to pick it up and put it down
+        wherever I was, and not needing to rely on anybody else.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>Failing to learn, several times</h3>
+      <p>
+        I have watched the Apple keynotes religiously since 2006, when I got my first
+        MacBook, and the developer tools they showed off always fascinated me. School never
+        exposed me to programming, so I assumed it was out of reach. At university I got as
+        far as some Python, C# and Visual Basic, enough to recognise the logical way of
+        thinking, the frustration of getting something to work, and the joy when it does.
+      </p>
+      <p>
+        After that I tried Stanford's free iOS courses several times. Each time I was out of
+        my depth within a few sessions and gave up. There was a clear gap in my knowledge and
+        I was <strong>too impatient to fill it</strong>, because I just wanted to make
+        something. At work I squeezed programming in where I could, automating data
+        processing in Excel VBA, going back to MatLab and Python, but it never scratched the
+        itch.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>Starting at the actual beginning</h3>
+      <p>
+        What changed it was an audiobook. Accidental Tech Podcast were advertising
+        <em>Creative Selection</em> by Ken Kocienda, a former Apple engineer, about how the
+        original iPhone's software was made, and in particular its keyboard. His stories about
+        the excitement of getting something working, even cobbled together, set me off again.
+      </p>
+      <p>
+        This time I promised myself I would not rush at an idea. I would just learn, from
+        scratch, with no goal beyond the enjoyment of it. In winter 2018, on a 10.5 inch
+        iPad, I downloaded Swift Playgrounds and worked through the tutorials, an hour or so
+        every day, taking extensive notes as I went. My brain is a terrible way to store and
+        manage data, so writing it down let me learn without the fear of forgetting.
+      </p>
+      <p>
+        Around Christmas I found a £10 sale on a Udemy course, The Complete iOS App
+        Development Bootcamp by Dr Angela Yu. It covered everything from the basics to
+        submitting an app to the App Store. Within days I was in Xcode pushing apps I had
+        built to my own phone.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>The tutorial trap</h3>
+      <p>
+        Six months into the course I still felt reluctant to start anything of my own. There
+        was always more to learn, and I felt no closer to being able to implement any of it.
+        Then I read a blog post by somebody who had learnt the same way, warning about the
+        <strong>tutorial trap</strong>: enjoying the safe learning environment and never
+        stepping out. Their advice was to take the leap and start a project, and keep learning
+        that way instead.
+      </p>
+      <p>
+        The problem was that I had no idea worth building. I had made a small air quality app
+        outside the course structure, reading global air quality APIs, and I was proud of it,
+        but it was far too simple to release. Then I settled on a unit converter aimed at
+        mechanical engineers. After a couple of months my motivation was falling fast. I was
+        spending my time building table views and trying to hold protocols and delegates in my
+        head, and I still did not know which code was supposed to go where. I stopped, and took
+        a break from programming for the first time in nine months.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>A floppy disk in a school break room</h3>
+      <p>
+        At school we had an old Macintosh in the break room. We would scramble for the floppy
+        disk of Megaball and take it in turns. We loved that game. Out of hundreds we could
+        have played, that was the one we came back to, because it struck a balance of fun,
+        frustration and competition.
+      </p>
+      <p>
+        Years later I went looking for something like it. I enjoy casual games on the iPhone
+        but it is rare to find one I love, and the App Store left me disappointed: the games
+        either felt amateur, or were <strong>full of adverts and in-app purchases</strong>.
+        Even the ones from the big studios felt devoid of any real fun. There was a gap I
+        could fill with a throwback to a game I really loved.
       </p>
       <figure>
         <img src="assets/story-megaball.png" alt="A screenshot of the original Megaball, the game that inspired Giga-Ball">
@@ -90,45 +183,157 @@
       </figure>
     </section>
 
-    <section class="chapter reveal">
-      <div class="when">2019</div>
-      <h2>Nine months of learning to code</h2>
+    <section class="passage reveal">
+      <h3>The night it started</h3>
       <p>
-        I had tried and failed to learn iOS development several times, jumping straight
-        into Stanford's course, getting out of my depth, giving up. This time I started at
-        the actual beginning: Swift Playgrounds, an hour a day, taking notes as I went,
-        then a ten-pound course on Udemy from top to bottom.
-      </p>
-      <p>
-        My first real project was a unit converter for engineers. It bored me to death.
-        After a couple of months of building table views and re-reading my own notes about
-        protocols and delegates, I stopped.
-      </p>
-      <p>
-        Then, staying on a friend's sofa in London, I said the brick-breaker idea out loud
-        for the first time and realised how much more excited I was by it. I could not
-        sleep. I ended up watching SpriteKit tutorials at three in the morning, and the
-        thing that struck me was how <strong>achievable</strong> it looked.
+        Staying at a friend's house in London, we got talking about what I had been doing, and
+        I said the game idea out loud for the first time. It made me realise how much more
+        enthused I was by it than by the converter. That night, trying to sleep on the sofa, I
+        could not get it out of my head. I ended up on YouTube in the early hours watching
+        Archetapp's tutorials on making a basic Pong-style game, and I was struck by how
+        approachable Apple's SpriteKit looked.
       </p>
       <blockquote>
         I was excited again. Maybe this was within my reach.
       </blockquote>
+      <p>
+        As soon as I got home from that weekend, tired and with a sore back, Giga-Ball was
+        born.
+      </p>
     </section>
 
-    <section class="chapter reveal">
-      <div class="when">August 2019</div>
-      <h2>A fortnight to a playable game</h2>
+    <!-- ================= PART TWO ================= -->
+    <div class="partmark reveal">
+      <div class="no">Part two</div>
+      <h2>Making it real</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="passage reveal">
+      <h3>Losing the thread</h3>
       <p>
-        The first thing I built was the bounce: an algorithm that takes the angle the ball
-        arrives at and where on the paddle it lands, and works out where it goes next. A few
-        days of ups and downs and it worked, and I had learnt more about SpriteKit doing
-        that than any tutorial had taught me.
+        Between the day job, other hobbies and ordinary life, finding time was hard. I learnt
+        that if I left it too long between sessions I lost my flow and forgot what I had been
+        trying to do, and the longer the gap the higher the barrier to starting again. That
+        gets out of hand quickly. September 2019 was three business trips, long hours and a
+        holiday to prepare for, and by the end of it, with my motivation still high, I was
+        <strong>scared to even open Xcode</strong>.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>Redundancy</h3>
+      <p>
+        I took a week off in Tuscany with my wife in early October. A few days after getting
+        back to the office I was made redundant from a job of seven years, along with 500
+        others, with three months' full pay on garden leave, effective immediately.
       </p>
       <p>
-        Away on a business trip, I spent the evenings making bricks that disappear when the
-        ball hits them. Three of the four brick types that are still in the game today were
-        built that week. Before I flew home I had a level I could show people. It had been
-        <strong>less than a fortnight</strong>.
+        It was a difficult time, and I tried to find the positives. Three months at home while
+        my wife went to work was a chance to take Giga-Ball from a hobby to something more.
+        It did not quite work out like that. Several weeks went on supporting the business
+        after the fact, and the rest on CVs, portfolios and interviews.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>The UK, Singapore, or Australia</h3>
+      <p>
+        My wife and I had always been interested in living abroad, and we narrowed it to
+        Singapore or Australia. My previous employer offered a role in Singapore with a
+        one-month trial in the UK, which I completed in January 2020. I had also applied for a
+        job in Australia and, after several rounds of interviews and testing, been offered it,
+        pending a visa.
+      </p>
+      <p>
+        In late January I took the Australian job, left the UK trial and my wife handed in her
+        notice, all before the visa had been approved. If it had been declined we would both
+        have been out of work. In mid-February it came through, and I was due to start in
+        Sydney at the beginning of April.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>One week, and the borders shut</h3>
+      <p>
+        The six weeks that followed were a strange period. We travelled light, which was a good
+        excuse to sell almost everything we owned. And Coronavirus was starting to make
+        headlines. On 11 March it was declared a pandemic and cases were appearing closer to
+        home. What if we caught it and could not fly? What if the flights were cancelled? What
+        if they stopped transfers through Dubai?
+      </p>
+      <p>
+        On the evening of Saturday 14 March we moved our flights from the 21st to Monday the
+        16th. It is one of the best decisions we have ever made: <strong>Australia closed its
+        borders to international arrivals on Thursday 19 March</strong>. We packed and moved
+        out of our house in a single day, dropped my wife's laptop at her office without a
+        chance to say goodbye, and drove two hours to my parents'. By the evening of Tuesday
+        17 March we were in a hotel room in Sydney.
+      </p>
+      <p>
+        Then fourteen days of quarantine in that room. Not the arrival we had imagined, but we
+        were elated to be there, and it turned out to be an extremely productive fortnight for
+        Giga-Ball. What else was there to do?
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>April, then July, then September</h3>
+      <p>
+        I started the new job on schedule. Working from home made the routine easy to keep, and
+        I was putting a couple of hours into Giga-Ball most days of the week.
+      </p>
+      <p>
+        By then the scope had grown. In January the goal was to finish by April. In April the
+        goal was July. By July it was September. I was not falling behind so much as
+        discovering what I wanted it to be: it was my first app, and I wanted to be proud of
+        it. I had come this far, and rushing it out would have been a waste.
+      </p>
+    </section>
+
+    <!-- ================= PART THREE ================= -->
+    <div class="partmark reveal">
+      <div class="no">Part three</div>
+      <h2>How it was built</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="passage reveal">
+      <h3>The bounce</h3>
+      <p>
+        I started with nine months of Swift behind me and carried on with the Pong-style game
+        from the tutorial. One thing about it jarred: the ball simply rebounded off the paddle,
+        which had no influence on where it went. The player was only keeping it in play.
+      </p>
+      <p>
+        Megaball gave you more control, sending the ball off at a fixed angle depending on
+        where it struck the paddle. I did not love that either, because a ball arriving from
+        the left and hitting the right of the paddle came back at almost the angle it arrived
+        at, which is predictable but does not feel natural.
+      </p>
+      <p>
+        So I wrote an algorithm that takes <strong>both</strong> the angle of the ball on the
+        way down and where it lands on the paddle. Right of the paddle sends it further right,
+        left sends it further left. A few days of ups and downs later it worked, and I had
+        learnt more about how SpriteKit handles 2D space, angles, velocities and contacts than
+        any tutorial had taught me. I did not need another six months of those. I could learn
+        as I went.
+      </p>
+    </section>
+
+    <section class="passage reveal">
+      <h3>A fortnight to a playable game</h3>
+      <p>
+        By August 2019 I had stopped evolving the Pong game and started a new Xcode project,
+        bringing the paddle algorithm across. Away on a business trip for a week, I spent each
+        evening on bricks that disappear when the ball hits them, and by the end of it three of
+        the four brick types that are still in the game today existed, along with a level to
+        test them.
+      </p>
+      <p>
+        Before I flew home I had something I could show my colleagues. <strong>Less than a
+        fortnight</strong> from starting, and the foundation was built. My motivation peaked;
+        any moment I could find went into it.
       </p>
       <figure>
         <img src="assets/story-early-menu.png" alt="An early main menu, when the game was still called Megaball">
@@ -136,40 +341,51 @@
       </figure>
     </section>
 
-    <section class="chapter reveal">
-      <div class="when">October 2019</div>
-      <h2>Redundancy, and rather more time</h2>
+    <section class="passage reveal">
+      <h3>A state machine, and a score that forgot itself</h3>
       <p>
-        I came back from a week in Tuscany, spent a few days at my desk, and was made
-        redundant along with five hundred other people. Three months' pay, effective
-        immediately.
+        Early on the bricks sat right at the top of the screen, a long way from the paddle, so
+        I set the ball speed high. Looking back it was ridiculous, but it felt right then.
       </p>
       <p>
-        It was a hard few months, but it did mean I could work on Giga-Ball properly. I
-        expected the pace to rocket. It didn't. The next thing I built was power-ups, and
-        power-ups took forever. Every one of them was a new corner of SpriteKit, and every
-        one had to work sensibly alongside all the others. Catch a sticky paddle, then catch
-        an expand paddle, and <strong>both graphics have to grow together</strong>.
+        Somewhere I picked up the idea of running a game on a state machine, and it became the
+        framework everything else hangs off: Pre-Game, Playing, Game Over to start with, each
+        able to run code on the way in and the way out. Moving from Pre-Game to Playing animates
+        the paddle and bricks in; moving to Game Over animates them out. Over development it
+        grew to hold the pause state and the between-levels state that resets the scene, sets
+        the next level and records progress.
       </p>
-      <figure>
-        <img src="assets/story-layout.png" alt="Handwritten notes working out the screen layout in units of frame width">
-        <figcaption>The screen worked out on squared paper: one unit is a twentieth of the frame's width. Those proportions are still in the code, and still asserted by a test.</figcaption>
-      </figure>
+      <p>
+        The score worked, and the high score worked until you relaunched the app, at which point
+        it was gone. I started with NSUserDefaults because singletons were easier to think
+        about, knowing full well I would need something more robust once I wanted to keep every
+        statistic rather than one number.
+      </p>
     </section>
 
-    <section class="chapter reveal">
-      <div class="when">2020</div>
-      <h2>Drawing it, twice, and then again</h2>
+    <section class="passage reveal">
+      <h3>Power-ups, which took forever</h3>
       <p>
-        I designed everything in Sketch, the graphics first and then every level. I had tried
-        building levels in code and caught myself designing them to be easy to type rather
-        than good to play, which is exactly the wrong way round. So all 110 of them were
-        drawn first and coded second.
+        I expected the pace to rocket once I had time. It did not. Power-ups were next and they
+        were slow. Falling squares first, appearing when the ball breaks a brick, caught by the
+        paddle or lost off the bottom. Then what each one does: changing the paddle size and the
+        ball speed, catching the ball, firing lasers, passing straight through bricks.
       </p>
       <p>
-        By the end I had spent something like <strong>a quarter of the whole project doing
-        graphic design</strong>, and I am glad I did. Looking back at the early screens, the
-        game got much better every time I redrew it.
+        Every one was a new corner of SpriteKit, some of them steep. Centre rects, so a sprite
+        grows without distorting. The different contact delegates, and how changing one alters
+        every interaction. Then the timers and the icons and the progress bars, which took many
+        iterations of their own. And then the combinations, which is where the real work is:
+        catch a sticky paddle, then catch an expand paddle, and <strong>both graphics have to
+        grow together</strong>.
+      </p>
+      <p>
+        The power-up code grew and grew and got harder to manage. Experience would have helped
+        here. Looking back I would organise it very differently, but reorganising it now would
+        break things and cost weeks to arrive back where I started. I used object-oriented
+        practice where I could and kept to an MVC pattern where it was possible, which was not
+        always. A seasoned programmer would be critical of it. It works, it is stable, and I
+        know it inside out, which is the one advantage of working alone.
       </p>
       <figure>
         <img src="assets/story-commits.png" alt="A long list of Giga-Ball commits and build notes in Xcode">
@@ -177,44 +393,99 @@
       </figure>
     </section>
 
-    <section class="chapter reveal">
-      <div class="when">March 2020</div>
-      <h2>Australia, and then the world shut</h2>
+    <section class="passage reveal">
+      <h3>Drawing it, and drawing it again</h3>
       <p>
-        In the middle of all this I took a job in Sydney. We accepted before the visa came
-        through, sold almost everything we owned, and booked flights for the 21st of March.
+        The graphics were done in Sketch, and I went through iteration after iteration until
+        things looked right. Looking back at the early designs I am glad I did, though over the
+        course of development I must have spent <strong>at least a quarter of my time on
+        graphic design</strong>.
       </p>
       <p>
-        You know what happened next. We got here. The game got finished in a country I had
-        just arrived in, during a year when there was not a great deal else to do.
+        Sketch became more valuable still for the levels. Using symbols, so one graphic can be
+        referenced over and over, I designed all of them there before coding them in. I had
+        tried building them in code first and quickly noticed I was tailoring each level to be
+        quicker to type, which does not make for good-looking or enjoyable levels. It took
+        weeks, and many attempts, to get them to look good and play well and still be hard.
+      </p>
+      <figure>
+        <img src="assets/story-layout.png" alt="Handwritten notes working out the screen layout in units of frame width">
+        <figcaption>The screen worked out on squared paper: one unit is a twentieth of the frame's width. Those proportions are still in the code, and still asserted by a test.</figcaption>
+      </figure>
+    </section>
+
+    <section class="passage reveal">
+      <h3>Two things SpriteKit does not do well</h3>
+      <p>
+        SpriteKit made Giga-Ball possible, but it is not perfect, and two problems cost me a
+        lot of time.
+      </p>
+      <p>
+        The first appeared when I slowed the ball down after moving the bricks closer to the
+        paddle. At the lower speed, a ball meeting a surface at a narrow angle stopped bouncing
+        and started <strong>gliding along it</strong>. I assumed it was my code until I found
+        that it is a common complaint. I fixed as much of it as I could by reading the ball's
+        angle on contact and setting the rebound myself, which is straightforward for walls and
+        the paddle and much less so for bricks. A trace of it is still there today, resolved far
+        enough that it does not take away from the game.
+      </p>
+      <p>
+        The second, also still there, is the ball behaving unpredictably when it lands on the
+        seam between two bricks, most visibly on indestructible ones. Apple recognise it. I
+        tried several approaches and none of them fixed it without breaking something else.
       </p>
     </section>
 
-    <section class="chapter reveal">
-      <div class="when">September 2020</div>
-      <h2>Released</h2>
+    <section class="passage reveal">
+      <h3>Building the app around the game</h3>
       <p>
-        Giga-Ball went on the App Store with 110 handmade levels, 28 power-ups, an endless
-        mode, Game Center leaderboards and iCloud sync, and no adverts, no in-app
-        purchases and no tracking, which was the entire point of building it in the first
-        place.
+        The game was coming along and the app around it did not exist. I wire-framed in Sketch
+        to work out what screens I needed and how they connected, then built the pause menu,
+        the main menu, the between-levels and game over screens, and the settings. It took a
+        large chunk of time and put the Udemy course into practice, which by then felt like a
+        long time ago.
       </p>
       <p>
-        It has been downloaded a few thousand times and rated 4.5 out of 5. Version 1.3,
-        a second endless mode, a challenge that changes every day and a lot of new bricks,
-        is on the way.
+        I wanted the app optimised for when these games actually get played: a few spare
+        minutes on the bus, in a queue, on the sofa. Easy to pick up and put down, easy to
+        navigate, playable with one hand, with the controls kept towards the bottom of the
+        screen. That is where a lot of the small features come from: swipe up to pause, the
+        countdown when you come back, the direction marker around the ball on resuming,
+        disabling the home bar on the first swipe so it cannot be triggered by accident, a ball
+        reset for the rare times it gets stuck, and hidden bricks flashing when the ball hits
+        the paddle if nothing else is visible.
+      </p>
+      <p>
+        Game Center and iCloud sync were big learning curves on top of that. There were plenty
+        of moments when leaving them out, or saving them for a later version, would have been
+        quicker. That felt like a compromise I was not willing to make, even at the cost of
+        extending development.
       </p>
     </section>
 
-    <section class="chapter reveal">
-      <div class="ends">
-        <h2 style="text-align:center">Still going</h2>
-        <p>
-          Same person, same evenings, six years later.
-        </p>
-        <a class="solid" style="margin-top:22px" href="sneak-peek.html">See what is coming in 1.3</a>
-      </div>
+    <section class="passage reveal">
+      <h3>Released</h3>
+      <p>
+        Giga-Ball went on the App Store in September 2020 with 110 handmade levels, 28
+        power-ups, an endless mode, Game Center leaderboards and iCloud sync. No adverts, no
+        in-app purchases, no tracking, which was the point of building it in the first place.
+      </p>
+      <p>
+        Looking back at that year, the only constants were my wife and Giga-Ball. I am not sure
+        how I would have filled the time otherwise. From the weeks of garden leave to the
+        fortnight in quarantine, it was good to have something to be creative with, feel
+        productive about, and be proud of.
+      </p>
     </section>
+
+    <div class="ends reveal">
+      <h2 style="text-align:center">Still going</h2>
+      <p>
+        Six years later, the same person and the same evenings. It has been downloaded a few
+        thousand times and rated 4.5 out of 5, and version 1.3 is on the way.
+      </p>
+      <a class="solid" style="margin-top:22px" href="sneak-peek.html">See what is coming in 1.3</a>
+    </div>
   </article>
 
   <footer>
