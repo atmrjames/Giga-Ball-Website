@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Giga-Ball was made</title>
+<meta name="description" content="How Giga-Ball went from a game remembered from childhood to an App Store release: nine months of learning Swift, a redundancy, a move to Australia, and a launch in a pandemic.">
+<meta name="theme-color" content="#1b0026">
+<meta property="og:title" content="How Giga-Ball was made">
+<meta property="og:description" content="One person, no studio, and about a year and a half of evenings.">
+<meta property="og:image" content="https://giga-ball.app/assets/icon.png">
+<meta property="og:url" content="https://giga-ball.app/story.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .top { text-align: center; padding: clamp(34px, 9vw, 72px) 0 clamp(16px, 5vw, 34px); }
+  .flag { display: inline-block; margin-top: 22px; font-size: 0.74rem; font-weight: 800;
+    letter-spacing: 0.09em; color: #24003a; background: var(--green);
+    padding: 5px 12px; border-radius: 999px; text-transform: uppercase; }
+  h1.title { margin-top: 14px; font-size: clamp(1.9rem, 9.5vw, 3.2rem); font-weight: 900;
+    color: #fff; letter-spacing: -0.03em; line-height: 1.06;
+    text-shadow: 0 0 34px rgba(210,255,0,0.3); }
+  h1.title em { font-style: normal; color: var(--green); }
+  .intro { max-width: 46ch; margin: 16px auto 0; color: var(--text-dim);
+    font-size: clamp(1rem, 3.8vw, 1.1rem); }
+
+  /* The story is a column of chapters, each a year-marker, a heading and prose */
+  article { max-width: 660px; margin: 0 auto; }
+  .chapter { padding: clamp(30px, 8vw, 56px) 0; }
+  .when { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green); }
+  .chapter h2 { text-align: left; font-size: clamp(1.35rem, 6vw, 1.9rem);
+    margin-top: 4px; text-shadow: none; }
+  .chapter p { margin-top: 14px; color: var(--text-dim);
+    font-size: clamp(0.98rem, 3.7vw, 1.04rem); }
+  .chapter p strong { color: #fff; font-weight: 600; }
+
+  figure { margin-top: 26px; }
+  figure img { width: 100%; display: block; border-radius: 14px;
+    border: 1px solid var(--edge); background: #000;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.5); }
+  figcaption { margin-top: 10px; font-size: 0.8rem; color: rgba(255,255,255,0.42);
+    text-align: center; }
+
+  blockquote { margin: 26px 0 0; padding: 18px 20px;
+    border-left: 3px solid var(--green); border-radius: 0 12px 12px 0;
+    background: rgba(210,255,0,0.05); color: #fff;
+    font-size: clamp(1rem, 4vw, 1.1rem); font-weight: 600; line-height: 1.5; }
+
+  .ends { max-width: 660px; margin: 0 auto; text-align: center;
+    border: 1px solid rgba(210,255,0,0.3); border-radius: 20px;
+    padding: clamp(26px, 7vw, 40px) 22px; background: rgba(210,255,0,0.05); }
+  .ends p { color: var(--text-dim); margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="glowfield" aria-hidden="true"></div>
+
+<main>
+  <header class="top">
+    <div class="icon-float">
+      <img class="icon" src="assets/icon.png" alt="">
+    </div>
+    <img class="wordmark" src="assets/logo.png" alt="Giga-Ball">
+    <span class="flag">The story</span>
+    <h1 class="title">How it was <em>made</em></h1>
+    <p class="intro">
+      No studio, no funding and no team. A game remembered from childhood, nine months of
+      learning to code, a redundancy, a move to the other side of the world, and a launch
+      in the middle of a pandemic.
+    </p>
+  </header>
+
+  <article>
+    <section class="chapter reveal">
+      <div class="when">Before any of it</div>
+      <h2>A game I could not find again</h2>
+      <p>
+        I am a Product Design Engineer by trade, and I had wanted for years to make
+        something that was mine — something I was solely responsible for, which is a
+        novelty you rarely get at work. The idea I kept coming back to was an app.
+      </p>
+      <p>
+        I also had a game stuck in my head. As a kid I played a brick breaker called
+        Megaball to death. Years later I went looking for something like it on the App
+        Store and came away disappointed: the good ones felt amateur, and the polished ones
+        were <strong>full of adverts and in-app purchases</strong>. There was a gap where
+        the game I wanted should have been.
+      </p>
+      <figure>
+        <img src="assets/story-megaball.png" alt="A screenshot of the original Megaball, the game that inspired Giga-Ball">
+        <figcaption>The original. Board 03, and a score that fits in five digits.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="when">2019</div>
+      <h2>Nine months of learning to code</h2>
+      <p>
+        I had tried and failed to learn iOS development several times — jumping straight
+        into Stanford's course, getting out of my depth, giving up. This time I started at
+        the actual beginning: Swift Playgrounds, an hour a day, taking notes as I went,
+        then a ten-pound course on Udemy from top to bottom.
+      </p>
+      <p>
+        My first real project was a unit converter for engineers. It bored me to death.
+        After a couple of months of building table views and re-reading my own notes about
+        protocols and delegates, I stopped.
+      </p>
+      <p>
+        Then, staying on a friend's sofa in London, I said the brick-breaker idea out loud
+        for the first time and realised how much more excited I was by it. I could not
+        sleep. I ended up watching SpriteKit tutorials at three in the morning, and the
+        thing that struck me was how <strong>achievable</strong> it looked.
+      </p>
+      <blockquote>
+        I was excited again. Maybe this was within my reach.
+      </blockquote>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="when">August 2019</div>
+      <h2>A fortnight to a playable game</h2>
+      <p>
+        The first thing I built was the bounce: an algorithm that takes the angle the ball
+        arrives at and where on the paddle it lands, and works out where it goes next. A few
+        days of ups and downs and it worked — and I had learnt more about SpriteKit doing
+        that than any tutorial had taught me.
+      </p>
+      <p>
+        Away on a business trip, I spent the evenings making bricks that disappear when the
+        ball hits them. Three of the four brick types that are still in the game today were
+        built that week. Before I flew home I had a level I could show people. It had been
+        <strong>less than a fortnight</strong>.
+      </p>
+      <figure>
+        <img src="assets/story-early-menu.png" alt="An early main menu, when the game was still called Megaball">
+        <figcaption>Before it had a name of its own. Tutorial, Select Level, Known Issues, Feedback.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="when">October 2019</div>
+      <h2>Redundancy, and rather more time</h2>
+      <p>
+        I came back from a week in Tuscany, spent a few days at my desk, and was made
+        redundant along with five hundred other people. Three months' pay, effective
+        immediately.
+      </p>
+      <p>
+        It was a hard few months, but it did mean I could work on Giga-Ball properly. I
+        expected the pace to rocket. It didn't — the next thing I built was power-ups, and
+        power-ups took forever. Every one of them was a new corner of SpriteKit, and every
+        one had to work sensibly alongside all the others. Catch a sticky paddle, then catch
+        an expand paddle, and <strong>both graphics have to grow together</strong>.
+      </p>
+      <figure>
+        <img src="assets/story-layout.png" alt="Handwritten notes working out the screen layout in units of frame width">
+        <figcaption>The screen worked out on squared paper: one unit is a twentieth of the frame's width. Those proportions are still in the code, and still asserted by a test.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="when">2020</div>
+      <h2>Drawing it, twice, and then again</h2>
+      <p>
+        I designed everything in Sketch — the graphics first, then every level. I had tried
+        building levels in code and caught myself designing them to be easy to type rather
+        than good to play, which is exactly the wrong way round. So all 110 of them were
+        drawn first and coded second.
+      </p>
+      <p>
+        By the end I had spent something like <strong>a quarter of the whole project doing
+        graphic design</strong>, and I am glad I did. Looking back at the early screens, the
+        game got much better every time I redrew it.
+      </p>
+      <figure>
+        <img src="assets/story-commits.png" alt="A long list of Giga-Ball commits and build notes in Xcode">
+        <figcaption>Alpha 0.2.1 to beta 0.3.3, in build notes. Game Center, iCloud sync, level packs, endless mode.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="when">March 2020</div>
+      <h2>Australia, and then the world shut</h2>
+      <p>
+        In the middle of all this I took a job in Sydney. We accepted before the visa came
+        through, sold almost everything we owned, and booked flights for the 21st of March.
+      </p>
+      <p>
+        You know what happened next. We got here. The game got finished in a country I had
+        just arrived in, during a year when there was not a great deal else to do.
+      </p>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="when">September 2020</div>
+      <h2>Out</h2>
+      <p>
+        Giga-Ball went on the App Store with 110 handmade levels, 28 power-ups, an endless
+        mode, Game Center leaderboards and iCloud sync — and no adverts, no in-app
+        purchases and no tracking, which was the entire point of building it in the first
+        place.
+      </p>
+      <p>
+        It has been downloaded a few thousand times and rated 4.5 out of 5. Version 1.3 —
+        a second endless mode, a challenge that changes every day, and a lot of new bricks —
+        is on the way.
+      </p>
+    </section>
+
+    <section class="chapter reveal">
+      <div class="ends">
+        <h2 style="text-align:center">Still going</h2>
+        <p>
+          Same person, same evenings, six years later.
+        </p>
+        <a class="solid" style="margin-top:22px" href="sneak-peek.html">See what is coming in 1.3</a>
+      </div>
+    </section>
+  </article>
+
+  <footer>
+    <p><a href="index.html">giga-ball.app</a> &nbsp;·&nbsp; <a href="sneak-peek.html">1.3 sneak peek</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="mailto:contact@giga-ball.app">contact@giga-ball.app</a></p>
+    <p style="margin-top:8px">© 2026 James Harding. Giga-Ball is for iPhone and iPad.</p>
+  </footer>
+</main>
+
+<script src="shared.js"></script>
+</body>
+</html>

@@ -49,8 +49,8 @@
     transition: opacity 0.5s ease; }
   .phone:hover { transform: translateY(-8px); }
   .phone .caption { text-align: center; padding: 10px 0 4px;
-    font-size: clamp(0.95rem, 4.4vw, 1.25rem); font-weight: 900;
-    letter-spacing: -0.01em; color: var(--green);
+    font-size: clamp(0.88rem, 4vw, 1.2rem); font-weight: 900;
+    letter-spacing: 0.01em; color: var(--green);
     text-shadow: 0 0 18px rgba(210,255,0,0.45); }
   /* The mode's name in the app's own colour and weight, at the size the app gives it -
      these were small grey captions and the play test wanted the modes announced */
@@ -61,6 +61,43 @@
   .honest p { color: #fff; font-weight: 600; font-size: clamp(1rem, 4vw, 1.15rem); }
   .honest span { display: block; margin-top: 8px; color: var(--text-dim);
     font-weight: 400; font-size: 0.94rem; }
+
+  /* What the App Store says, and how many people have it */
+  .numbers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    max-width: 620px; margin: 0 auto; text-align: center; }
+  .numbers div { border: 1px solid var(--edge); border-radius: 16px; padding: 18px 8px;
+    background: rgba(255,255,255,0.035);
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease; }
+  .numbers div:hover { transform: translateY(-4px); border-color: rgba(210,255,0,0.45);
+    background: rgba(210,255,0,0.06); }
+  .numbers b { display: block; font-size: clamp(1.5rem, 7vw, 2.3rem); font-weight: 900;
+    color: var(--green); letter-spacing: -0.02em; line-height: 1.1; }
+  .numbers span { font-size: 0.78rem; color: var(--text-dim); }
+
+  .stars { text-align: center; margin-top: 30px; font-size: 1.4rem;
+    letter-spacing: 0.16em; color: var(--green);
+    text-shadow: 0 0 18px rgba(210,255,0,0.5); }
+  .stars + p { text-align: center; color: var(--text-dim); font-size: 0.86rem;
+    margin-top: 6px; }
+
+  /* The reviews scroll sideways on a phone and wrap on a desktop: five cards stacked is
+     a page of scrolling nobody reads to the end of */
+  .says { display: flex; gap: 12px; margin-top: 26px; overflow-x: auto;
+    padding-bottom: 10px; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; }
+  .say { flex: 0 0 78%; scroll-snap-align: center;
+    border: 1px solid var(--edge); border-radius: 16px; padding: 20px;
+    background: rgba(255,255,255,0.035);
+    transition: border-color 0.25s ease, background 0.25s ease; }
+  .say:hover { border-color: rgba(210,255,0,0.4); background: rgba(210,255,0,0.05); }
+  .say .rate { color: var(--green); letter-spacing: 0.1em; font-size: 0.8rem; }
+  .say h3 { margin-top: 8px; font-size: 1rem; color: #fff; }
+  .say p { margin-top: 8px; font-size: 0.93rem; color: var(--text-dim); }
+  .say .who { margin-top: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+  @media (min-width: 700px) {
+    .says { flex-wrap: wrap; overflow: visible; }
+    .say { flex: 1 1 300px; }
+  }
 
   .peek { text-align: center; }
   .peek .flag { display: inline-block; font-size: 0.74rem; font-weight: 800;
@@ -116,11 +153,11 @@
     <div class="shots">
       <div class="phone">
         <img id="shotA" src="assets/shot-invader.png" alt="A Giga-Ball level shaped like a space invader">
-        <div class="caption">Classic Mode</div>
+        <div class="caption">CLASSIC MODE</div>
       </div>
       <div class="phone">
         <img id="shotB" src="assets/shot-endless.png" alt="Endless Mode, with the field descending">
-        <div class="caption">Endless Mode</div>
+        <div class="caption">ENDLESS MODE</div>
       </div>
     </div>
 
@@ -149,6 +186,61 @@
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 18a4 4 0 0 0 0-8 6 6 0 0 0-11.5-2A3.5 3.5 0 0 0 6 18z"/><path d="M12 12v8"/><path d="m9 17 3 3 3-3"/></svg>Everywhere at once</h3>
         <p>Progress, unlocks and statistics follow you between iPhone and iPad over iCloud. Stop on one, carry on with the other.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>What people say</h2>
+    <div class="stars" aria-hidden="true">★★★★★</div>
+    <p>4.5 out of 5 from 55 ratings on the App Store</p>
+
+    <div class="says">
+      <div class="say">
+        <div class="rate" aria-hidden="true">★★★★★</div>
+        <h3>Love this game!</h3>
+        <p>&ldquo;Still my favourite brick breaker.&rdquo;</p>
+        <div class="who">JustinL73 &middot; United Kingdom</div>
+      </div>
+      <div class="say">
+        <div class="rate" aria-hidden="true">★★★★★</div>
+        <h3>Fun and nostalgic</h3>
+        <p>&ldquo;Excellent and very playable game&hellip; very high quality look and feel.&rdquo;</p>
+        <div class="who">Chickpeamicky &middot; United Kingdom</div>
+      </div>
+      <div class="say">
+        <div class="rate" aria-hidden="true">★★★★★</div>
+        <h3>Fantastic!</h3>
+        <p>&ldquo;I really like the ball meets paddle physics, best out there.&rdquo;</p>
+        <div class="who">NipNipNope &middot; United States</div>
+      </div>
+      <div class="say">
+        <div class="rate" aria-hidden="true">★★★★★</div>
+        <h3>Instantly addictive.</h3>
+        <p>&ldquo;Very well made. Bravo!&rdquo;</p>
+        <div class="who">CursorYou &middot; India</div>
+      </div>
+      <div class="say">
+        <div class="rate" aria-hidden="true">★★★★★</div>
+        <h3>Super Spiel</h3>
+        <p>&ldquo;Macht Spa&szlig;. Nichts auszusetzen.&rdquo;</p>
+        <div class="who">stetze &middot; Germany</div>
+      </div>
+      <div class="say">
+        <div class="rate" aria-hidden="true">★★★★★</div>
+        <h3>Retro fun all the way!</h3>
+        <p>&ldquo;Challenging, frustrating and funny when you mess up&hellip; a world of fun.&rdquo;</p>
+        <div class="who">Robparry10 &middot; Malta</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Six years in the App Store</h2>
+    <p class="sub">Made by one person, in the evenings, and still going.</p>
+    <div class="numbers" style="margin-top:30px">
+      <div><b>4,200+</b><span>downloads</span></div>
+      <div><b>4.5</b><span>average rating</span></div>
+      <div><b>6</b><span>years on the App&nbsp;Store</span></div>
     </div>
   </section>
 
@@ -183,7 +275,7 @@
   </section>
 
   <footer>
-    <p><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="sneak-peek.html">1.3 sneak peek</a> &nbsp;·&nbsp; <a href="mailto:contact@giga-ball.app">contact@giga-ball.app</a></p>
+    <p><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="sneak-peek.html">1.3 sneak peek</a> &nbsp;·&nbsp; <a href="story.html">How it was made</a> &nbsp;·&nbsp; <a href="mailto:contact@giga-ball.app">contact@giga-ball.app</a></p>
     <p style="margin-top:8px">© 2026 James Harding. Giga-Ball is for iPhone and iPad.</p>
   </footer>
 </main>
