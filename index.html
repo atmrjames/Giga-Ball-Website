@@ -74,17 +74,15 @@
     color: var(--green); letter-spacing: -0.02em; line-height: 1.1; }
   .numbers span { font-size: 0.78rem; color: var(--text-dim); }
 
-  /* 4.5 of 5, drawn as 4.5 of 5: an empty row with a filled row over it, clipped to the
-     score. A row of five solid stars beside the words "4.5 out of 5" was the one thing on
-     the page saying something other than the truth */
-  .stars { position: relative; display: block; width: max-content; margin: 30px auto 0;
-    font-size: 1.5rem; letter-spacing: 0.16em; line-height: 1;
-    color: rgba(255,255,255,0.16); }
-  .stars .filled { position: absolute; top: 0; left: 0; overflow: hidden;
-    white-space: nowrap; color: var(--green);
-    text-shadow: 0 0 18px rgba(210,255,0,0.5); }
+  /* 4.5 of 5, drawn as 4.5 of 5.
+     Five identical star shapes, each filled by a gradient that turns over at the point the
+     score reaches. Drawn rather than typed because a text star is a font's idea of a star:
+     it carries its own side bearings, so a clipped row of them cut a half star in the wrong
+     place and left the colour looking spilt rather than filled. */
+  .stars { display: block; width: min(230px, 62vw); height: auto; margin: 30px auto 0;
+    filter: drop-shadow(0 0 14px rgba(210,255,0,0.45)); }
   .stars + p { text-align: center; color: var(--text-dim); font-size: 0.86rem;
-    margin-top: 8px; }
+    margin-top: 10px; }
 
   /* The reviews scroll sideways on a phone and wrap on a desktop: five cards stacked is
      a page of scrolling nobody reads to the end of */
@@ -197,7 +195,27 @@
 
   <section class="reveal">
     <h2>What people say</h2>
-    <div class="stars" aria-hidden="true">★★★★★<span class="filled" style="width:90%">★★★★★</span></div>
+    <svg class="stars" viewBox="0 0 116 20" aria-hidden="true">
+      <defs>
+        <path id="star" d="M10 1.2l2.7 5.5 6 .9-4.35 4.25 1.03 6-5.38-2.83L4.6 17.85l1.03-6L1.28 7.6l6-.9z"/>
+        <!-- The five stars as a mask, with two flat bars showing through it. A gradient fill
+             will not do this: `use` translates the coordinate system, so a gradient measured
+             in user space restarts inside every star and fills all five to the same fraction.
+             The mask is measured once, across the row, which is what "4.5 out of 5" means. -->
+        <mask id="starrow">
+          <use href="#star" x="0" fill="#fff"/>
+          <use href="#star" x="24" fill="#fff"/>
+          <use href="#star" x="48" fill="#fff"/>
+          <use href="#star" x="72" fill="#fff"/>
+          <use href="#star" x="96" fill="#fff"/>
+        </mask>
+      </defs>
+      <g mask="url(#starrow)">
+        <rect x="0" y="0" width="116" height="20" fill="rgba(255,255,255,0.14)"/>
+        <rect x="0" y="0" width="106" height="20" fill="#d2ff00"/>
+        <!-- 106 of 116 is the middle of the fifth star -->
+      </g>
+    </svg>
     <p>4.5 out of 5 from 55 ratings on the App Store</p>
 
     <div class="says">
