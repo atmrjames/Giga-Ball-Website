@@ -74,11 +74,17 @@
     color: var(--green); letter-spacing: -0.02em; line-height: 1.1; }
   .numbers span { font-size: 0.78rem; color: var(--text-dim); }
 
-  .stars { text-align: center; margin-top: 30px; font-size: 1.4rem;
-    letter-spacing: 0.16em; color: var(--green);
+  /* 4.5 of 5, drawn as 4.5 of 5: an empty row with a filled row over it, clipped to the
+     score. A row of five solid stars beside the words "4.5 out of 5" was the one thing on
+     the page saying something other than the truth */
+  .stars { position: relative; display: block; width: max-content; margin: 30px auto 0;
+    font-size: 1.5rem; letter-spacing: 0.16em; line-height: 1;
+    color: rgba(255,255,255,0.16); }
+  .stars .filled { position: absolute; top: 0; left: 0; overflow: hidden;
+    white-space: nowrap; color: var(--green);
     text-shadow: 0 0 18px rgba(210,255,0,0.5); }
   .stars + p { text-align: center; color: var(--text-dim); font-size: 0.86rem;
-    margin-top: 6px; }
+    margin-top: 8px; }
 
   /* The reviews scroll sideways on a phone and wrap on a desktop: five cards stacked is
      a page of scrolling nobody reads to the end of */
@@ -191,7 +197,7 @@
 
   <section class="reveal">
     <h2>What people say</h2>
-    <div class="stars" aria-hidden="true">★★★★★</div>
+    <div class="stars" aria-hidden="true">★★★★★<span class="filled" style="width:90%">★★★★★</span></div>
     <p>4.5 out of 5 from 55 ratings on the App Store</p>
 
     <div class="says">
@@ -232,16 +238,10 @@
         <div class="who">Robparry10 &middot; Malta</div>
       </div>
     </div>
-  </section>
 
-  <section class="reveal">
-    <h2>Six years in the App Store</h2>
-    <p class="sub">Made by one person, in the evenings, and still going.</p>
-    <div class="numbers" style="margin-top:30px">
-      <div><b>4,200+</b><span>downloads</span></div>
-      <div><b>4.5</b><span>average rating</span></div>
-      <div><b>6</b><span>years on the App&nbsp;Store</span></div>
-    </div>
+    <p style="text-align:center">
+      <a class="ghost" href="story.html">How Giga-Ball was made &rarr;</a>
+    </p>
   </section>
 
   <section class="reveal peek">
