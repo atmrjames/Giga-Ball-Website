@@ -55,6 +55,23 @@
   /* The mode's name in the app's own colour and weight, at the size the app gives it -
      these were small grey captions and the play test wanted the modes announced */
 
+  /* iPhone or iPad, one gallery at a time. The switch is two small pills over the shots;
+     iPhone is the default because it is where nearly everyone will play. The iPad frames
+     reuse the phone styling - same bezel gradient, same shadow - at the iPad's own
+     proportions, so the two gallery states read as the same device family. */
+  .device-switch { display: flex; gap: 8px; justify-content: center; margin-top: 26px; }
+  .device-switch button { border: 1px solid var(--edge); background: rgba(255,255,255,0.05);
+    color: var(--text-dim); font: inherit; font-size: 0.86rem; font-weight: 700;
+    padding: 7px 18px; border-radius: 999px; cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+  .device-switch button.on { background: var(--green); border-color: var(--green);
+    color: #141414; }
+  .shots.pads { display: none; }
+  .shots.pads .phone { max-width: 330px; }
+  .shots.pads .phone img { aspect-ratio: 827 / 1200; object-fit: cover; }
+  body.show-ipad .shots.phones { display: none; }
+  body.show-ipad .shots.pads { display: flex; }
+
   .honest { margin: 0 auto; max-width: 620px; text-align: center;
     border: 1px solid rgba(210,255,0,0.3); border-radius: 18px;
     padding: 28px 22px; background: rgba(210,255,0,0.05); }
@@ -154,13 +171,29 @@
     <h2>Two ways to play</h2>
     <p class="sub">Work through the packs, or see how long you last when the field stops ending.</p>
 
-    <div class="shots">
+    <div class="device-switch" role="tablist" aria-label="Screenshots by device">
+      <button id="switchPhone" class="on" role="tab" aria-selected="true">iPhone</button>
+      <button id="switchPad" role="tab" aria-selected="false">iPad</button>
+    </div>
+
+    <div class="shots phones">
       <div class="phone">
         <img id="shotA" src="assets/shot-invader.png" alt="A Giga-Ball level shaped like a space invader">
         <div class="caption">CLASSIC MODE</div>
       </div>
       <div class="phone">
         <img id="shotB" src="assets/shot-endless.png" alt="Endless Mode, with the field descending">
+        <div class="caption">ENDLESS MODE</div>
+      </div>
+    </div>
+
+    <div class="shots pads">
+      <div class="phone">
+        <img src="assets/shot-ipad-menu.png" alt="The Giga-Ball main menu, full screen on an iPad">
+        <div class="caption">FULL SCREEN</div>
+      </div>
+      <div class="phone">
+        <img src="assets/shot-ipad-endless.png" alt="Endless Mode on an iPad, the play zone keeping its shape">
         <div class="caption">ENDLESS MODE</div>
       </div>
     </div>
@@ -300,6 +333,23 @@
 
 <script src="shared.js"></script>
 <script>
+// iPhone or iPad. A class on the body rather than styles toggled per element, so the
+// CSS above owns what "showing iPad" means and this only says when.
+(function () {
+  var phoneBtn = document.getElementById('switchPhone');
+  var padBtn = document.getElementById('switchPad');
+  if (!phoneBtn || !padBtn) return;
+  function show(pad) {
+    document.body.classList.toggle('show-ipad', pad);
+    phoneBtn.classList.toggle('on', !pad);
+    padBtn.classList.toggle('on', pad);
+    phoneBtn.setAttribute('aria-selected', String(!pad));
+    padBtn.setAttribute('aria-selected', String(pad));
+  }
+  phoneBtn.addEventListener('click', function () { show(false); });
+  padBtn.addEventListener('click', function () { show(true); });
+})();
+
 // The screenshots cycle through a few real levels, crossfading, and the two sides never
 // show the same one.
 (function () {
