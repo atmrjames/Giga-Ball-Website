@@ -45,6 +45,10 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 18px; }
 
 /* ---------- The app icon and wordmark ---------- */
 
+/* On every page but the landing one they are the way home (play-test round 22). A block,
+   so the icon and the wordmark are one target rather than two. */
+.home { display: block; text-decoration: none; }
+
 /* The float and the lean are on two different elements on purpose: a keyframe animation
    owns `transform` outright, so the wrapper does the breathing and the icon itself does
    the leaning towards the cursor. One element could not do both. */
