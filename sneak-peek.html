@@ -68,15 +68,20 @@
   .ahead h2 { text-align: left; font-size: clamp(1.5rem, 6.5vw, 2.1rem); margin-top: 4px;
     text-shadow: none; }
   .ahead > p { margin-top: 12px; color: var(--text-dim); }
-  .plan { margin-top: 22px; border: 1px dashed rgba(255,255,255,0.18); border-radius: 16px;
-    padding: 18px 18px 6px; }
-  .plan + .plan { margin-top: 14px; }
-  .plan h3 { font-size: 1.05rem; color: #fff; }
-  .plan h3 small { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--green); margin-left: 8px; }
-  .plan ul { margin: 10px 0 0; padding-left: 1.1em; color: var(--text-dim); }
+  .plan { margin: 22px 0 0; border: 1px dashed rgba(255,255,255,0.18); border-radius: 16px;
+    padding: 18px 18px 8px 2.2em; color: var(--text-dim); }
   .plan li { margin-bottom: 10px; }
   .plan li b { color: #fff; font-weight: 700; }
+
+  /* The game's own icons beside what they stand for */
+  .lines div.ic { align-items: center; }
+  .lines div.ic img { flex: 0 0 36px; width: 36px; height: 36px; object-fit: contain; }
+  .lines div.ic b { min-width: 12.5em; }
+  @media (max-width: 560px) {
+    .lines div.ic { display: grid; grid-template-columns: 36px 1fr; column-gap: 12px; row-gap: 2px; }
+    .lines div.ic img { grid-row: 1 / span 2; align-self: start; margin-top: 2px; }
+    .lines div.ic b { min-width: 0; }
+  }
 </style>
 </head>
 <body>
@@ -139,26 +144,26 @@
       </div>
       <div class="lines">
         <h3>The twists</h3>
-        <div><b>One Life</b><span>Only one ball is provided.</span></div>
-        <div><b>Extra Balls</b><span>Two extra balls are provided.</span></div>
-        <div><b>No Power-Ups</b><span>Just the paddle, the ball and the bricks.</span></div>
-        <div><b>No Good News</b><span>Bad power-ups only.</span></div>
-        <div><b>No Bad News</b><span>Good power-ups only.</span></div>
-        <div><b>Power Shower</b><span>Power-ups are more frequent.</span></div>
-        <div><b>Drought</b><span>Power-ups are rare.</span></div>
-        <div><b>Always On</b><span>One power-up is permanently active.</span></div>
-        <div><b>Fog of War</b><span>Every brick is invisible until you hit it.</span></div>
-        <div><b>Mirrored</b><span>The level is presented mirrored.</span></div>
-        <div><b>Upside Down</b><span>The level is presented upside down.</span></div>
-        <div><b>Brick Swap</b><span>Brick types are swapped around.</span></div>
-        <div><b>Landslide</b><span>The bricks keep coming down.</span></div>
-        <div><b>No Breaks</b><span>The pause button is disabled.</span></div>
-        <div><b>Time Trial</b><span>Ninety seconds, and unlimited balls.</span></div>
-        <div><b>Extra Mayhem</b><span>Brick variety is dialled up.</span></div>
-        <div><b>Full Deck</b><span>Everything is in play from the first metre. The rare stays rare.</span></div>
-        <div><b>Level Pegging</b><span>Everything is in play from the first metre, and nothing is rarer than anything else.</span></div>
-        <div><b>Monochromatic</b><span>All colour is drained from the game.</span></div>
-        <div><b>Theme days</b><span>One of the game's themes is applied for the day.</span></div>
+        <div class="ic"><img src="assets/icons/tw-onelife.png" alt="" width="36" height="36" loading="lazy"><b>One Life</b><span>Start with only 1 ball.</span></div>
+        <div class="ic"><img src="assets/icons/tw-spareballs.png" alt="" width="36" height="36" loading="lazy"><b>Extra Balls</b><span>Two extra balls are provided.</span></div>
+        <div class="ic"><img src="assets/icons/tw-nopowerups.png" alt="" width="36" height="36" loading="lazy"><b>No Power-Ups</b><span>Just the paddle, the ball and the bricks.</span></div>
+        <div class="ic"><img src="assets/icons/tw-nogoodnews.png" alt="" width="36" height="36" loading="lazy"><b>No Good News</b><span>Bad power-ups only.</span></div>
+        <div class="ic"><img src="assets/icons/tw-nobadnews.png" alt="" width="36" height="36" loading="lazy"><b>No Bad News</b><span>Good power-ups only.</span></div>
+        <div class="ic"><img src="assets/icons/tw-powershower.png" alt="" width="36" height="36" loading="lazy"><b>Power Shower</b><span>Power-ups are more frequent.</span></div>
+        <div class="ic"><img src="assets/icons/tw-drought.png" alt="" width="36" height="36" loading="lazy"><b>Drought</b><span>Power-ups are rare.</span></div>
+        <div class="ic"><img src="assets/icons/tw-alwayson.png" alt="" width="36" height="36" loading="lazy"><b>Always On</b><span>One power-up is permanently active.</span></div>
+        <div class="ic"><img src="assets/icons/tw-fogofwar.png" alt="" width="36" height="36" loading="lazy"><b>Foggy</b><span>Every brick starts invisible.</span></div>
+        <div class="ic"><img src="assets/icons/tw-mirrored.png" alt="" width="36" height="36" loading="lazy"><b>Mirrored</b><span>Flips the level horizontally.</span></div>
+        <div class="ic"><img src="assets/icons/tw-upsidedown.png" alt="" width="36" height="36" loading="lazy"><b>Upside Down</b><span>Flips the level vertically.</span></div>
+        <div class="ic"><img src="assets/icons/tw-brickswap.png" alt="" width="36" height="36" loading="lazy"><b>Brick Swap</b><span>Brick types are swapped around.</span></div>
+        <div class="ic"><img src="assets/icons/tw-landslide.png" alt="" width="36" height="36" loading="lazy"><b>Landslide</b><span>The bricks keep coming down.</span></div>
+        <div class="ic"><img src="assets/icons/tw-nopausing.png" alt="" width="36" height="36" loading="lazy"><b>No Breaks</b><span>The pause button is disabled.</span></div>
+        <div class="ic"><img src="assets/icons/tw-timetrial.png" alt="" width="36" height="36" loading="lazy"><b>Time Trial</b><span>Ninety seconds, and unlimited balls.</span></div>
+        <div class="ic"><img src="assets/icons/tw-mayhembricks.png" alt="" width="36" height="36" loading="lazy"><b>Extra Mayhem</b><span>Brick variety is dialled up.</span></div>
+        <div class="ic"><img src="assets/icons/tw-fulldeck.png" alt="" width="36" height="36" loading="lazy"><b>Full Deck</b><span>Everything is in play from the start.</span></div>
+        <div class="ic"><img src="assets/icons/tw-levelpegging.png" alt="" width="36" height="36" loading="lazy"><b>Level Pegging</b><span>Rarity rules are removed.</span></div>
+        <div class="ic"><img src="assets/icons/tw-monochromatic.png" alt="" width="36" height="36" loading="lazy"><b>Monochromatic</b><span>All colour is drained from the game.</span></div>
+        <div class="ic"><img src="assets/icons/tw-dailytheme.png" alt="" width="36" height="36" loading="lazy"><b>Theme days</b><span>One of the game's themes is applied for the day.</span></div>
       </div>
       <div class="later">Screenshots coming soon</div>
     </div>
@@ -176,7 +181,7 @@
       </p>
       <div class="lines">
         <h3>Shapes</h3>
-        <div><b>Round</b><span>Smooth and corner-less, so glancing hits go somewhere new.</span></div>
+        <div><b>Round</b><span>No sharp edges.</span></div>
         <div><b>Convex</b><span>Pointed. Off-centre hits leave wider than they arrived.</span></div>
         <div><b>Concave</b><span>Notched. Hits near an edge are turned back inward.</span></div>
         <div><b>Wedge</b><span>A triangle. Everything reaching the slope leaves the same way.</span></div>
@@ -196,7 +201,7 @@
         <div><b>Directional</b><span>Can only be destroyed from one side. Get underneath it.</span></div>
         <div><b>Exploding</b><span>Destroys the bricks around it, every time it is hit.</span></div>
         <div><b>Spawner</b><span>Fills the space around it with new bricks, every time it is hit. Not a favour.</span></div>
-        <div><b>Portal</b><span>Never damaged. Sends the ball to the top, or out of another portal.</span></div>
+        <div><b>Portal</b><span>Sends the ball through a portal.</span></div>
         <div><b>Power-Up</b><span>Holds a power-up that fires the moment the ball hits it.</span></div>
       </div>
       <div class="later">Screenshots coming soon</div>
@@ -215,38 +220,44 @@
       </p>
       <div class="lines">
         <h3>On your side</h3>
-        <div><b>Multi-Ball</b><span>Another ball joins in. Up to four at once, and the run goes on while any of them is still up.</span></div>
-        <div><b>Wrecking Ball</b><span>Destroys every brick it hits, whatever it is.</span></div>
-        <div><b>Ball Aura</b><span>A glow around the ball destroys whatever it touches.</span></div>
-        <div><b>Laser Beam</b><span>A beam fires from the ball and clears its whole column.</span></div>
-        <div><b>Cluster</b><span>A spray of tiny balls from the paddle, each one taking out the first thing it hits.</span></div>
-        <div><b>Halo</b><span>An arc of light over the paddle destroys every brick inside it.</span></div>
-        <div><b>Brick Cull</b><span>Destroys bricks at random.</span></div>
-        <div><b>Brick Retreat</b><span>Pushes the whole field back up two rows.</span></div>
-        <div><b>Brick Descent</b><span>Brings the field down continuously while it runs.</span></div>
-        <div><b>Aimed Sticky</b><span>The ball sticks to the paddle and you choose the launch angle.</span></div>
-        <div><b>Auto-Aim</b><span>The ball leaves the paddle aimed at the nearest brick.</span></div>
-        <div><b>Ball Control</b><span>Move the paddle and the ball follows it through the air.</span></div>
-        <div><b>Ball Spin</b><span>Friction off the paddle curves the ball's path.</span></div>
-        <div><b>Magnetism</b><span>The ball is drawn back towards the paddle.</span></div>
-        <div><b>Portal</b><span>The ball goes in through the paddle and comes out of the top.</span></div>
-        <div><b>Wrap-Around</b><span>Leave one side, arrive at the other, and the paddle wraps too.</span></div>
-        <div><b>Ball Trajectory</b><span>Draws the ball's path ahead of it.</span></div>
-        <div><b>Landing Marker</b><span>Marks where the ball will land.</span></div>
-        <div><b>Safety Paddle</b><span>A second paddle just below the lowest bricks, for five bounces.</span></div>
-        <div><b>Mirror Paddle</b><span>A second paddle that moves as the mirror image of yours.</span></div>
-        <div><b>Lock and Key</b><span>Lock keeps every power-up you have running for as long as it lasts. Key ends a Lock, and only drops while one is on.</span></div>
+        <div class="ic"><img src="assets/icons/pu-multi-ball.png" alt="" width="36" height="36" loading="lazy"><b>Multi-Ball</b><span>Another ball joins in. Up to four at once, and the run goes on while any of them is still up.</span></div>
+        <div class="ic"><img src="assets/icons/pu-wrecking-ball.png" alt="" width="36" height="36" loading="lazy"><b>Wrecking Ball</b><span>Destroys every brick it hits, whatever it is.</span></div>
+        <div class="ic"><img src="assets/icons/pu-ball-aura.png" alt="" width="36" height="36" loading="lazy"><b>Ball Aura</b><span>A glow around the ball destroys whatever it touches.</span></div>
+        <div class="ic"><img src="assets/icons/pu-laser-beam.png" alt="" width="36" height="36" loading="lazy"><b>Laser Beam</b><span>A laser beam fires from the ball, destroying every brick it hits.</span></div>
+        <div class="ic"><img src="assets/icons/pu-cluster.png" alt="" width="36" height="36" loading="lazy"><b>Cluster</b><span>A spray of tiny balls from the paddle, each one taking out the first thing it hits.</span></div>
+        <div class="ic"><img src="assets/icons/pu-halo.png" alt="" width="36" height="36" loading="lazy"><b>Halo</b><span>An arc of light over the paddle destroys every brick inside it.</span></div>
+        <div class="ic"><img src="assets/icons/pu-brick-cull.png" alt="" width="36" height="36" loading="lazy"><b>Brick Cull</b><span>Destroys bricks at random.</span></div>
+        <div class="ic"><img src="assets/icons/pu-brick-retreat.png" alt="" width="36" height="36" loading="lazy"><b>Brick Retreat</b><span>Pushes the whole field back up two rows.</span></div>
+        <div class="ic"><img src="assets/icons/pu-brick-descent.png" alt="" width="36" height="36" loading="lazy"><b>Brick Descent</b><span>Brings the field down continuously while it runs.</span></div>
+        <div class="ic"><img src="assets/icons/pu-aimed-sticky.png" alt="" width="36" height="36" loading="lazy"><b>Aimed Sticky</b><span>The ball sticks to the paddle and you choose the launch angle.</span></div>
+        <div class="ic"><img src="assets/icons/pu-auto-aim.png" alt="" width="36" height="36" loading="lazy"><b>Auto-Aim</b><span>The ball leaves the paddle aimed at the nearest brick.</span></div>
+        <div class="ic"><img src="assets/icons/pu-ball-control.png" alt="" width="36" height="36" loading="lazy"><b>Ball Control</b><span>Move the paddle and the ball follows it through the air.</span></div>
+        <div class="ic"><img src="assets/icons/pu-ball-spin.png" alt="" width="36" height="36" loading="lazy"><b>Ball Spin</b><span>Friction off the paddle curves the ball's path.</span></div>
+        <div class="ic"><img src="assets/icons/pu-magnetism.png" alt="" width="36" height="36" loading="lazy"><b>Magnetism</b><span>The ball is drawn back towards the paddle.</span></div>
+        <div class="ic"><img src="assets/icons/pu-portal.png" alt="" width="36" height="36" loading="lazy"><b>Portal</b><span>The ball enters a portal via the paddle.</span></div>
+        <div class="ic"><img src="assets/icons/pu-wrap-around.png" alt="" width="36" height="36" loading="lazy"><b>Wrap-Around</b><span>Leave one side, arrive at the other, and the paddle wraps too.</span></div>
+        <div class="ic"><img src="assets/icons/pu-ball-trajectory.png" alt="" width="36" height="36" loading="lazy"><b>Ball Trajectory</b><span>Draws the ball's path ahead of it.</span></div>
+        <div class="ic"><img src="assets/icons/pu-landing-marker.png" alt="" width="36" height="36" loading="lazy"><b>Landing Marker</b><span>Marks where the ball will land.</span></div>
+        <div class="ic"><img src="assets/icons/pu-safety-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Safety Paddle</b><span>A second paddle just below the lowest bricks, for five hits.</span></div>
+        <div class="ic"><img src="assets/icons/pu-mirror-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Mirror Paddle</b><span>A second paddle that moves as the mirror image of yours.</span></div>
+        <div class="ic"><img src="assets/icons/pu-lock.png" alt="" width="36" height="36" loading="lazy"><b>Lock</b><span>Keeps every power-up you have running until a Key arrives.</span></div>
+        <div class="ic"><img src="assets/icons/pu-key.png" alt="" width="36" height="36" loading="lazy"><b>Key</b><span>Ends a Lock, and only drops while one is on.</span></div>
         <h3>Against you</h3>
-        <div><b>Reversed Paddle Control</b><span>The paddle goes the other way.</span></div>
-        <div><b>Inert Paddle</b><span>The paddle stops steering the bounce.</span></div>
-        <div><b>Flipped Bounce Angle</b><span>The paddle's effect on the bounce is reversed.</span></div>
-        <div><b>Random Bounce</b><span>The ball bounces erratically.</span></div>
-        <div><b>Ghost Ball</b><span>The ball turns invisible above the lowest bricks.</span></div>
-        <div><b>Split Paddle</b><span>The paddle breaks into pieces with gaps between them.</span></div>
-        <div><b>Paddle shapes</b><span>Convex, Concave, Wavy, and a Wedge facing either way. The paddle's top changes shape, and every bounce off it with it.</span></div>
-        <div><b>Drift Left and Right</b><span>The bricks and the falling power-ups slide sideways.</span></div>
-        <div><b>Brick Infill</b><span>Puts bricks back into empty spaces. Very bad.</span></div>
-        <div><b>Wipe</b><span>Ends everything you had running. Will not shift a Lock.</span></div>
+        <div class="ic"><img src="assets/icons/pu-reversed-paddle-control.png" alt="" width="36" height="36" loading="lazy"><b>Reversed Paddle Control</b><span>The paddle goes the other way.</span></div>
+        <div class="ic"><img src="assets/icons/pu-inert-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Inert Paddle</b><span>The paddle stops steering the bounce.</span></div>
+        <div class="ic"><img src="assets/icons/pu-flipped-bounce-angle.png" alt="" width="36" height="36" loading="lazy"><b>Flipped Bounce Angle</b><span>The paddle's effect on the bounce is reversed.</span></div>
+        <div class="ic"><img src="assets/icons/pu-random-bounce.png" alt="" width="36" height="36" loading="lazy"><b>Random Bounce</b><span>The ball bounces erratically.</span></div>
+        <div class="ic"><img src="assets/icons/pu-ghost-ball.png" alt="" width="36" height="36" loading="lazy"><b>Ghost Ball</b><span>The ball turns invisible above the lowest bricks.</span></div>
+        <div class="ic"><img src="assets/icons/pu-split-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Split Paddle</b><span>The paddle breaks into pieces with gaps between them.</span></div>
+        <div class="ic"><img src="assets/icons/pu-convex-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Convex Paddle</b><span>The paddle becomes convex, and every bounce off it changes with it.</span></div>
+        <div class="ic"><img src="assets/icons/pu-concave-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Concave Paddle</b><span>The paddle becomes concave.</span></div>
+        <div class="ic"><img src="assets/icons/pu-wavy-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Wavy Paddle</b><span>The paddle becomes wavy.</span></div>
+        <div class="ic"><img src="assets/icons/pu-wedge-left-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Wedge Left Paddle</b><span>The paddle becomes a wedge facing left.</span></div>
+        <div class="ic"><img src="assets/icons/pu-wedge-right-paddle.png" alt="" width="36" height="36" loading="lazy"><b>Wedge Right Paddle</b><span>The paddle becomes a wedge facing right.</span></div>
+        <div class="ic"><img src="assets/icons/pu-drift-left.png" alt="" width="36" height="36" loading="lazy"><b>Drift Left</b><span>The bricks and the falling power-ups slide left.</span></div>
+        <div class="ic"><img src="assets/icons/pu-drift-right.png" alt="" width="36" height="36" loading="lazy"><b>Drift Right</b><span>The bricks and the falling power-ups slide right.</span></div>
+        <div class="ic"><img src="assets/icons/pu-brick-infill.png" alt="" width="36" height="36" loading="lazy"><b>Brick Infill</b><span>Puts bricks back into empty spaces. Very bad.</span></div>
+        <div class="ic"><img src="assets/icons/pu-wipe.png" alt="" width="36" height="36" loading="lazy"><b>Wipe</b><span>Ends everything you had running. Will not shift a Lock.</span></div>
       </div>
     </div>
   </section>
@@ -332,30 +343,16 @@
         exactly as they are: new ideas ship as new modes and new packs, never as changes to
         old ones.
       </p>
-      <div class="plan">
-        <h3>Next<small>1.4</small></h3>
-        <ul>
-          <li><b>Accessibility.</b> Text that follows your size setting, a colour-blind option
-            so bricks are not told apart by colour alone, and an assist mode with a slower ball
-            and a wider paddle.</li>
-          <li><b>A Home Screen widget</b> to start a mode and see your best.</li>
-          <li><b>Carry a run between devices.</b> Start on your iPhone, finish on your iPad,
-            through iCloud.</li>
-          <li><b>Daily Challenge reminders</b>, and a card to share your result.</li>
-          <li><b>Light and dark appearances</b>, and Liquid Glass through the rest of the app.</li>
-          <li><b>Smoother on iPad</b>, with the graphics reworked to draw faster.</li>
-        </ul>
-      </div>
-      <div class="plan">
-        <h3>Further out</h3>
-        <ul>
-          <li><b>New level packs</b> built from the new bricks, including seasonal ones.</li>
-          <li><b>A speed-run mode</b>: power-ups off, and leaderboards for time.</li>
-          <li><b>More languages.</b></li>
-          <li><b>Mac and Apple Vision Pro.</b></li>
-          <li><b>Pointer support on iPad</b>: move the paddle with a trackpad or mouse.</li>
-        </ul>
-      </div>
+      <ul class="plan">
+        <li><b>Accessibility.</b> Text that follows your size setting, a colour-blind option, and an assist mode with a slower ball and a wider paddle.</li>
+        <li><b>A Home Screen widget</b> to start a mode and see your best.</li>
+        <li><b>Carry a run between devices.</b> Start on your iPhone, finish on your iPad.</li>
+        <li><b>Daily Challenge reminders</b>, and a card to share your result.</li>
+        <li><b>New level packs</b> built from the new bricks, including seasonal ones.</li>
+        <li><b>A speed-run mode</b> with leaderboards for time.</li>
+        <li><b>More languages.</b></li>
+        <li><b>Mac and Apple Vision Pro.</b></li>
+      </ul>
     </div>
   </section>
 
