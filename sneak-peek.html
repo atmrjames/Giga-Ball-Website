@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Giga-Ball 1.3 - a sneak peek</title>
-<meta name="description" content="What is coming in Giga-Ball 1.3: Endless Mayhem, a Daily Challenge, new brick shapes and behaviours, twenty-two new power-ups, and a public TestFlight.">
+<meta name="description" content="What is coming in Giga-Ball 1.3: Endless Mayhem, a Daily Challenge with twenty twists, new brick shapes and behaviours, thirty-seven new power-ups, and what comes after.">
 <meta name="theme-color" content="#1b0026">
 <meta property="og:title" content="Giga-Ball 1.3">
-<meta property="og:description" content="Endless Mayhem, a Daily Challenge, new bricks and twenty-two new power-ups.">
+<meta property="og:description" content="Endless Mayhem, a Daily Challenge, new bricks and thirty-seven new power-ups.">
 <meta property="og:image" content="https://giga-ball.app/assets/icon.png">
 <meta property="og:url" content="https://giga-ball.app/sneak-peek.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -58,6 +58,25 @@
   .waiting { display: inline-block; margin-top: 22px; padding: 13px 26px;
     border: 1px dashed rgba(255,255,255,0.3); border-radius: 999px;
     color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.95rem; }
+
+  .lines h3 { margin: 22px 0 4px; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green); }
+  .lines h3:first-child { margin-top: 0; }
+
+  /* Beyond 1.3: the plans, set apart from what is built by a dashed edge */
+  .ahead { max-width: 720px; margin: 0 auto; }
+  .ahead h2 { text-align: left; font-size: clamp(1.5rem, 6.5vw, 2.1rem); margin-top: 4px;
+    text-shadow: none; }
+  .ahead > p { margin-top: 12px; color: var(--text-dim); }
+  .plan { margin-top: 22px; border: 1px dashed rgba(255,255,255,0.18); border-radius: 16px;
+    padding: 18px 18px 6px; }
+  .plan + .plan { margin-top: 14px; }
+  .plan h3 { font-size: 1.05rem; color: #fff; }
+  .plan h3 small { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green); margin-left: 8px; }
+  .plan ul { margin: 10px 0 0; padding-left: 1.1em; color: var(--text-dim); }
+  .plan li { margin-bottom: 10px; }
+  .plan li b { color: #fff; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -75,8 +94,8 @@
     <h1 class="title">Version <em>1.3</em></h1>
     <p class="intro">
       The biggest update since the game came out: a second endless mode, a challenge that
-      changes every day, and a field full of bricks that do things. Arriving alongside
-      iOS 27, in a month or two.
+      changes every day, and a field full of bricks that do things. It is finished and in
+      testing now, and arrives soon, alongside iOS 27.
     </p>
   </header>
 
@@ -86,12 +105,13 @@
       <h2>Endless Mayhem</h2>
       <p>
         Endless mode, let off the leash. The field descends as it always did, but now the
-        bricks fight back: they fall, wander, spin, explode, refill their neighbours and
-        open portals across the screen. New power-ups act on the paddle rather than the
-        ball, and there are enough of them that no two runs go the same way.
+        bricks fight back: they fall, wander, spin, explode, fill the gaps around them and
+        open portals across the screen. Thirty-seven new power-ups change the ball, the
+        paddle and the field itself, and there are enough of them that no two runs go the
+        same way.
       </p>
       <div class="tags">
-        <span class="pill">22 new power-ups</span>
+        <span class="pill">37 new power-ups</span>
         <span class="pill">Portals</span>
         <span class="pill">Moving bricks</span>
         <span class="pill">Its own leaderboard</span>
@@ -105,17 +125,40 @@
       <div class="kicker">New mode</div>
       <h2>Daily Challenge</h2>
       <p>
-        One level, one run, the same for everybody, every day. A day picks a mode, a level
-        and a couple of <em>twists</em> - Fog of War hides the field until you hit it,
-        Drought makes power-ups scarce, One Life means what it says - and your first attempt
-        is the one that counts. Play it again afterwards as much as you like; those runs are
-        practice, and are labelled as such.
+        One run a day, the same for everybody, wherever they are. A day picks a mode, a level
+        and a couple of <em>twists</em>, and your first attempt is the one that counts. Play
+        it again as much as you like afterwards; those runs are free play, and are labelled
+        as such. Keep a streak going, or go back and try any of the last thirty days.
       </p>
       <div class="tags">
-        <span class="pill">A new day at midnight</span>
-        <span class="pill">Twists</span>
+        <span class="pill">Same challenge worldwide</span>
+        <span class="pill">20 twists</span>
         <span class="pill">One scoring attempt</span>
+        <span class="pill">Streaks</span>
         <span class="pill">Daily leaderboard</span>
+      </div>
+      <div class="lines">
+        <h3>The twists</h3>
+        <div><b>One Life</b><span>Only one ball is provided.</span></div>
+        <div><b>Extra Balls</b><span>Two extra balls are provided.</span></div>
+        <div><b>No Power-Ups</b><span>Just the paddle, the ball and the bricks.</span></div>
+        <div><b>No Good News</b><span>Bad power-ups only.</span></div>
+        <div><b>No Bad News</b><span>Good power-ups only.</span></div>
+        <div><b>Power Shower</b><span>Power-ups are more frequent.</span></div>
+        <div><b>Drought</b><span>Power-ups are rare.</span></div>
+        <div><b>Always On</b><span>One power-up is permanently active.</span></div>
+        <div><b>Fog of War</b><span>Every brick is invisible until you hit it.</span></div>
+        <div><b>Mirrored</b><span>The level is presented mirrored.</span></div>
+        <div><b>Upside Down</b><span>The level is presented upside down.</span></div>
+        <div><b>Brick Swap</b><span>Brick types are swapped around.</span></div>
+        <div><b>Landslide</b><span>The bricks keep coming down.</span></div>
+        <div><b>No Breaks</b><span>The pause button is disabled.</span></div>
+        <div><b>Time Trial</b><span>Ninety seconds, and unlimited balls.</span></div>
+        <div><b>Extra Mayhem</b><span>Brick variety is dialled up.</span></div>
+        <div><b>Full Deck</b><span>Everything is in play from the first metre. The rare stays rare.</span></div>
+        <div><b>Level Pegging</b><span>Everything is in play from the first metre, and nothing is rarer than anything else.</span></div>
+        <div><b>Monochromatic</b><span>All colour is drained from the game.</span></div>
+        <div><b>Theme days</b><span>One of the game's themes is applied for the day.</span></div>
       </div>
       <div class="later">Screenshots coming soon</div>
     </div>
@@ -126,25 +169,35 @@
       <div class="kicker">New bricks</div>
       <h2>Bricks that are not rectangles</h2>
       <p>
-        A brick is now two things: what it does when the ball arrives, and what it is like.
-        Those are independent, so any behaviour can wear any style - which is how you get a
-        spinning indestructible brick, an obstacle you cannot remove that shows you a
-        different angle every time the ball reaches it.
+        A brick is now several things at once: what shape it is, what size, how it moves, and
+        what it does when the ball arrives. They combine, which is how you get a spinning
+        indestructible brick, an obstacle you cannot remove that shows you a different angle
+        every time the ball reaches it.
       </p>
       <div class="lines">
-        <div><b>Convex</b><span>A dome. Off-centre hits leave wider than they arrived - it scatters.</span></div>
-        <div><b>Concave</b><span>A dish. Hits near an edge are turned back inward - it collects.</span></div>
-        <div><b>Wedge</b><span>A right triangle. Everything reaching the slope leaves the same way.</span></div>
-        <div><b>Rounded</b><span>A rounded body, so glancing hits deflect unpredictably.</span></div>
+        <h3>Shapes</h3>
+        <div><b>Round</b><span>Smooth and corner-less, so glancing hits go somewhere new.</span></div>
+        <div><b>Convex</b><span>Pointed. Off-centre hits leave wider than they arrived.</span></div>
+        <div><b>Concave</b><span>Notched. Hits near an edge are turned back inward.</span></div>
+        <div><b>Wedge</b><span>A triangle. Everything reaching the slope leaves the same way.</span></div>
+        <div><b>Diamond</b><span>Every face is angled.</span></div>
+        <div><b>Square</b><span>Every side the same length.</span></div>
+        <h3>Sizes</h3>
+        <div><b>Tiny</b><span>A quarter of a brick, small enough to hide in the gaps.</span></div>
+        <div><b>Big</b><span>Four times the size of a normal brick.</span></div>
+        <h3>Movement</h3>
         <div><b>Spinning</b><span>Turns on the spot, and the bounce angle turns with it.</span></div>
-        <div><b>Flashing</b><span>Alternates between solid and passable. Timing, not aim.</span></div>
-        <div><b>Gravity</b><span>Falls into the empty cells below it as the field is cleared.</span></div>
-        <div><b>Moving</b><span>Wanders about within its own patch of the field.</span></div>
-        <div><b>Directional</b><span>Only takes damage from one side. Get underneath it.</span></div>
-        <div><b>Exploding</b><span>Takes its eight neighbours with it.</span></div>
-        <div><b>Spawner</b><span>Fills its empty neighbours when destroyed. Not a favour.</span></div>
-        <div><b>Portal</b><span>Never damaged. Sends the ball out somewhere else entirely.</span></div>
-        <div><b>Big and Tiny</b><span>Bricks of four cells, and quarter-cell bricks that hide in the gaps.</span></div>
+        <div><b>Flashing</b><span>Flashes on and off. Timing, not aim.</span></div>
+        <div><b>Breathing</b><span>Shrinks and grows.</span></div>
+        <div><b>Moving</b><span>Slides side to side into the empty spaces next to it.</span></div>
+        <div><b>Gravity</b><span>Falls into the empty space below it as the field is cleared.</span></div>
+        <h3>When it is hit</h3>
+        <div><b>Fixed</b><span>Stops moving the first time it is hit, and destroys any other brick that runs into it.</span></div>
+        <div><b>Directional</b><span>Can only be destroyed from one side. Get underneath it.</span></div>
+        <div><b>Exploding</b><span>Destroys the bricks around it, every time it is hit.</span></div>
+        <div><b>Spawner</b><span>Fills the space around it with new bricks, every time it is hit. Not a favour.</span></div>
+        <div><b>Portal</b><span>Never damaged. Sends the ball to the top, or out of another portal.</span></div>
+        <div><b>Power-Up</b><span>Holds a power-up that fires the moment the ball hits it.</span></div>
       </div>
       <div class="later">Screenshots coming soon</div>
     </div>
@@ -153,35 +206,46 @@
   <section class="reveal">
     <div class="feature">
       <div class="kicker">New power-ups</div>
-      <h2>Twenty-two more ways to change a run</h2>
+      <h2>Thirty-seven more ways to change a run</h2>
       <p>
-        The existing twenty-eight are untouched. These are new, and a good third of them are
-        working against you - green awards points and helps, red deducts and does not. Most
-        run on a clock, and a second one of the same kind extends it rather than starting it
-        over.
+        The existing twenty-eight are untouched. These are new to Endless Mayhem, and fifteen
+        of them are working against you: green awards points and helps, red deducts and does
+        not. Most run on a clock, shown as a ring around the icon, and a second one of the
+        same kind extends it rather than starting it over.
       </p>
       <div class="lines">
-        <div><b>Wrap-Around</b><span>Leave one side, arrive at the other - and the paddle wraps too, so the corners stop being safe.</span></div>
-        <div><b>Portal Paddle</b><span>A ball entering the paddle comes back in at the top, still travelling sideways.</span></div>
-        <div><b>Aimed Sticky</b><span>The ball is held; drag to choose the launch angle. Let go without dragging and nothing changes.</span></div>
-        <div><b>Ball Steering</b><span>Move the paddle and the ball follows it through the air.</span></div>
-        <div><b>Magnetism</b><span>Curves the ball back towards the paddle, and weakens the further away it is.</span></div>
-        <div><b>Wrecking Ball</b><span>Destroys any brick in one hit, whatever it is - and still bounces off it.</span></div>
-        <div><b>Laser Beam</b><span>A sustained beam that clears a whole column. One beam per ball in play.</span></div>
-        <div><b>Cull</b><span>Destroys half of what is left, chosen at random. Worth most exactly when things are worst.</span></div>
-        <div><b>Aura</b><span>A glow twice the ball's size that destroys whatever it touches.</span></div>
-        <div><b>Paddle Halo</b><span>A semicircle of light thrown up from the paddle into the lower rows.</span></div>
-        <div><b>Lock and Key</b><span>Lock freezes every timer you have running. Key starts them again - and only drops while a Lock is on.</span></div>
-        <div><b>Trajectory Line</b><span>Draws the ball's path ahead, bouncing off the walls, stopping at the first brick.</span></div>
-        <div><b>Landing Marker</b><span>Marks the spot where the ball will cross the paddle's line.</span></div>
-        <div><b>Clear and Retreat</b><span>Destroys the lowest row and pushes the whole field back up one.</span></div>
-        <div><b>Descent</b><span>The field comes down continuously while it runs. Bricks pushed off the bottom score nothing.</span></div>
-        <div><b>Multi-Ball</b><span>Up to four at once, and the run continues while any one of them is still up.</span></div>
-        <div><b>Reversed Controls</b><span>The paddle goes the other way. Bad.</span></div>
-        <div><b>Inert Paddle</b><span>The paddle stops affecting the bounce angle at all. Bad.</span></div>
-        <div><b>Flipped Angle</b><span>The paddle's influence on the angle is inverted. Bad.</span></div>
-        <div><b>Randomised Bounce</b><span>Every bounce gains a random offset. Bad.</span></div>
-        <div><b>Infill</b><span>Puts bricks back into empty cells. Very bad.</span></div>
+        <h3>On your side</h3>
+        <div><b>Multi-Ball</b><span>Another ball joins in. Up to four at once, and the run goes on while any of them is still up.</span></div>
+        <div><b>Wrecking Ball</b><span>Destroys every brick it hits, whatever it is.</span></div>
+        <div><b>Ball Aura</b><span>A glow around the ball destroys whatever it touches.</span></div>
+        <div><b>Laser Beam</b><span>A beam fires from the ball and clears its whole column.</span></div>
+        <div><b>Cluster</b><span>A spray of tiny balls from the paddle, each one taking out the first thing it hits.</span></div>
+        <div><b>Halo</b><span>An arc of light over the paddle destroys every brick inside it.</span></div>
+        <div><b>Brick Cull</b><span>Destroys bricks at random.</span></div>
+        <div><b>Brick Retreat</b><span>Pushes the whole field back up two rows.</span></div>
+        <div><b>Brick Descent</b><span>Brings the field down continuously while it runs.</span></div>
+        <div><b>Aimed Sticky</b><span>The ball sticks to the paddle and you choose the launch angle.</span></div>
+        <div><b>Auto-Aim</b><span>The ball leaves the paddle aimed at the nearest brick.</span></div>
+        <div><b>Ball Control</b><span>Move the paddle and the ball follows it through the air.</span></div>
+        <div><b>Ball Spin</b><span>Friction off the paddle curves the ball's path.</span></div>
+        <div><b>Magnetism</b><span>The ball is drawn back towards the paddle.</span></div>
+        <div><b>Portal</b><span>The ball goes in through the paddle and comes out of the top.</span></div>
+        <div><b>Wrap-Around</b><span>Leave one side, arrive at the other, and the paddle wraps too.</span></div>
+        <div><b>Ball Trajectory</b><span>Draws the ball's path ahead of it.</span></div>
+        <div><b>Landing Marker</b><span>Marks where the ball will land.</span></div>
+        <div><b>Safety Paddle</b><span>A second paddle just below the lowest bricks, for five bounces.</span></div>
+        <div><b>Mirror Paddle</b><span>A second paddle that moves as the mirror image of yours.</span></div>
+        <div><b>Lock and Key</b><span>Lock keeps every power-up you have running for as long as it lasts. Key ends a Lock, and only drops while one is on.</span></div>
+        <h3>Against you</h3>
+        <div><b>Reversed Paddle Control</b><span>The paddle goes the other way.</span></div>
+        <div><b>Inert Paddle</b><span>The paddle stops steering the bounce.</span></div>
+        <div><b>Flipped Bounce Angle</b><span>The paddle's effect on the bounce is reversed.</span></div>
+        <div><b>Random Bounce</b><span>The ball bounces erratically.</span></div>
+        <div><b>Ghost Ball</b><span>The ball turns invisible above the lowest bricks.</span></div>
+        <div><b>Split Paddle</b><span>The paddle breaks into pieces with gaps between them.</span></div>
+        <div><b>Paddle shapes</b><span>Convex, Concave, Wavy, and a Wedge facing either way. The paddle's top changes shape, and every bounce off it with it.</span></div>
+        <div><b>Drift Left and Right</b><span>The bricks and the falling power-ups slide sideways.</span></div>
+        <div><b>Brick Infill</b><span>Puts bricks back into empty spaces. Very bad.</span></div>
         <div><b>Wipe</b><span>Ends everything you had running. Will not shift a Lock.</span></div>
       </div>
     </div>
@@ -192,6 +256,10 @@
     <p class="sub">Smaller things, mostly asked for by the people who play it.</p>
 
     <div class="grid">
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>Straight in</h3>
+        <p>Every mode on the main menu has a play button that starts a game straight away. Classic takes you to your next pack, and a red dot tells you today's challenge is waiting.</p>
+      </div>
       <div class="card">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Ring timers</h3>
         <p>Power-up timers moved from a bar under each icon to a ring around it, so you can read what is running at a glance.</p>
@@ -217,10 +285,14 @@
         <p>Finish a level or a run and the numbers tally up to where they landed, with the ticking to match.</p>
       </div>
       <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Your music</h3>
+        <p>Choose which of the four tracks play, in the menus and in the game. Untick them all and the music is off.</p>
+      </div>
+      <div class="card">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M7 15c3-6 7-6 10 0"/></svg>Liquid Glass</h3>
-        <p>On iOS 26 the menus are built from Apple's new glass: buttons, rows and pop-ups
-        that take their colour from the game behind them. On earlier versions everything
-        looks exactly as it always has.</p>
+        <p>On iOS 26 and later the menus are built from Apple's new glass: buttons, rows and
+        pop-ups that take their colour from the game behind them. On earlier versions
+        everything looks exactly as it always has.</p>
       </div>
       <div class="card">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Everything at a glance</h3>
@@ -232,6 +304,57 @@
         <p>Split by mode, with the numbers a brick breaker should have kept all along: your
         best single ball, your average hits per ball, and, in the endless modes, which
         power-up you climbed the furthest with.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg>iPad windows</h3>
+        <p>Resize the window however you like. The play area keeps the same shape on every
+        device, so the game plays exactly the same on your iPhone and your iPad.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>120Hz</h3>
+        <p>On iPhones and iPads with ProMotion the game runs at up to 120 frames a second.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M5 9h14"/><path d="M12 9v5l-3 7"/><path d="M12 14l3 7"/></svg>Accessibility</h3>
+        <p>Every button has a name for VoiceOver, and the game follows your Reduce Motion
+        setting as well as its own.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="ahead">
+      <div class="kicker">Beyond 1.3</div>
+      <h2>What comes after</h2>
+      <p>
+        These are plans rather than promises, and the order may change. Whatever arrives, the
+        eleven Classic packs and the leaderboards you have been climbing since 2020 stay
+        exactly as they are: new ideas ship as new modes and new packs, never as changes to
+        old ones.
+      </p>
+      <div class="plan">
+        <h3>Next<small>1.4</small></h3>
+        <ul>
+          <li><b>Accessibility.</b> Text that follows your size setting, a colour-blind option
+            so bricks are not told apart by colour alone, and an assist mode with a slower ball
+            and a wider paddle.</li>
+          <li><b>A Home Screen widget</b> to start a mode and see your best.</li>
+          <li><b>Carry a run between devices.</b> Start on your iPhone, finish on your iPad,
+            through iCloud.</li>
+          <li><b>Daily Challenge reminders</b>, and a card to share your result.</li>
+          <li><b>Light and dark appearances</b>, and Liquid Glass through the rest of the app.</li>
+          <li><b>Smoother on iPad</b>, with the graphics reworked to draw faster.</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Further out</h3>
+        <ul>
+          <li><b>New level packs</b> built from the new bricks, including seasonal ones.</li>
+          <li><b>A speed-run mode</b>: power-ups off, and leaderboards for time.</li>
+          <li><b>More languages.</b></li>
+          <li><b>Mac and Apple Vision Pro.</b></li>
+          <li><b>Pointer support on iPad</b>: move the paddle with a trackpad or mouse.</li>
+        </ul>
       </div>
     </div>
   </section>
