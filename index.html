@@ -104,8 +104,10 @@
   .device-switch button.on { background: var(--green); border-color: var(--green);
     color: #141414; }
   .shots.pads { display: none; }
-  .shots.pads .phone { max-width: 330px; }
-  .shots.pads .phone img { aspect-ratio: 827 / 1200; object-fit: cover; }
+  .shots.pads .phone { max-width: 340px; border-radius: 22px; padding: 11px; }
+  .shots.pads .phone img { aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; }
+  /* An iPad's shape and bezel: the whole 4:3 screen with its wide borders either side of the
+     field. Cropped to a phone's proportions, the iPad shots read as iPhone shots */
   body.show-ipad .shots.phones { display: none; }
   body.show-ipad .shots.pads { display: flex; }
 
@@ -224,7 +226,7 @@
 
     <div class="shots pads">
       <div class="phone">
-        <img src="assets/shot-ipad-classic.png" alt="A Classic Mode level shaped like a leaf, on an iPad">
+        <img src="assets/shot-ipad-classic.png" alt="A Classic Mode level on an iPad, the play area centred between wide borders">
         <div class="caption">CLASSIC MODE</div>
       </div>
       <div class="phone">
